@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Manilow Web · Webs para negocios locales en Madrid</title>
+<meta name="description" content="Diseño y mantenimiento de webs para negocios locales en Madrid y la Sierra Norte. Web desde 250 €, mantenimiento desde 29 €/mes. Auditoría gratis por WhatsApp.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://sebastian-manilow.github.io/">
+<meta property="og:type" content="website"><meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Manilow Web · Webs para negocios locales en Madrid">
+<meta property="og:description" content="Webs rápidas y claras para talleres, bares, clínicas y comercios. Desde 250 €. Auditoría gratis.">
+<meta property="og:url" content="https://sebastian-manilow.github.io/">
+<meta name="theme-color" content="#07080a">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Manilow Web","description":"Diseño, mantenimiento y SEO local de páginas web para negocios locales.","url":"https://sebastian-manilow.github.io/","telephone":"+34745060067","email":"smanilow@gmail.com","areaServed":["Madrid","Navalafuente","Colmenar Viejo","Sierra Norte de Madrid"],"address":{"@type":"PostalAddress","addressRegion":"Madrid","addressCountry":"ES"},"priceRange":"€","founder":{"@type":"Person","name":"Sebastián Manilow"},"makesOffer":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Web para negocio local"},"price":"250","priceCurrency":"EUR"},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Mantenimiento web mensual"},"price":"29","priceCurrency":"EUR"}]}</script>
+
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600&family=Manrope:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Concepto: taller digital de noche. Fondo tinta oscuro, una sola luz ámbar, maqueta de navegador viva como protagonista. */
+:root{
+  --bg:#07080a; --surf:#0d0f12; --surf2:#13161a; --line:#1e2227;
+  --fg:#f2f4f7; --mut:#8a909b; --amber:#d7e4ff; --amber-d:#aebfe6; --ok:#bff5df;
+  --disp:"Unbounded","Segoe UI",system-ui,sans-serif; --body:"Manrope","Segoe UI",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));overflow-x:hidden}
+a{color:inherit}
+.wrap{max-width:1100px;margin:0 auto}
+h1,h2,h3{font-family:var(--disp);line-height:1.08;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.3rem,6vw,4.4rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.7rem,3.6vw,2.7rem);font-weight:700;letter-spacing:-.01em}
+h3{font-size:1.25rem;font-weight:700}
+.eyebrow{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);font-weight:700}
+p{margin:0}
+.mut{color:var(--mut)}
+
+/* ambiente */
+.glow{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.glow i{position:absolute;border-radius:50%;filter:blur(90px);opacity:.28;animation:drift 18s ease-in-out infinite alternate}
+.glow i:nth-child(1){width:46vw;height:46vw;left:-10vw;top:-12vw;background:#d7e4ff33}
+.glow i:nth-child(2){width:40vw;height:40vw;right:-12vw;top:30vh;background:#8fa8d633;animation-duration:24s}
+@keyframes drift{to{transform:translate3d(6vw,5vh,0) scale(1.12)}}
+.grid{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.22;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:56px 56px;mask-image:radial-gradient(ellipse at 50% 0%,#000 0%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 50% 0%,#000 0%,transparent 70%)}
+main,header,footer{position:relative;z-index:1}
+
+/* cabecera */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px}
+.brand{font-family:var(--disp);font-weight:800;font-size:1.2rem;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand b{display:grid;place-items:center;width:34px;height:34px;border-radius:9px;background:var(--amber);color:#07080a;font-size:1rem}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--amber);color:#07080a;font-weight:700;text-decoration:none;
+  padding:13px 22px;border-radius:12px;border:0;cursor:pointer;font:700 1rem var(--body);transition:transform .18s ease,box-shadow .18s ease,background .18s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px #d7e4ff33;background:#ffffff}
+.btn:focus-visible,summary:focus-visible,.tab:focus-visible,input:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
+.btn.ghost:hover{background:var(--surf);box-shadow:none;border-color:#34475c}
+.top .btn{padding:10px 16px;font-size:.92rem}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding-block:56px 72px}
+.hero p.lead{font-size:1.15rem;color:var(--mut);max-width:34em;margin-top:22px}
+.hero h1 em{font-style:normal;color:var(--amber)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.facts{display:flex;flex-wrap:wrap;gap:22px;margin-top:34px;padding:0;list-style:none;color:var(--mut);font-size:.92rem}
+.facts li{display:flex;align-items:center;gap:8px}
+.facts li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ok)}
+
+/* maqueta navegador */
+.browser{background:var(--surf);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 30px 80px #0008;
+  transform:perspective(1200px) rotateY(-5deg) rotateX(2deg);transition:transform .5s ease}
+.browser:hover{transform:perspective(1200px) rotateY(0) rotateX(0)}
+.bar{display:flex;align-items:center;gap:7px;padding:12px 14px;background:var(--surf2);border-bottom:1px solid var(--line)}
+.bar i{width:10px;height:10px;border-radius:50%;background:#334355}
+.bar span{margin-left:10px;flex:1;background:var(--bg);border-radius:7px;padding:4px 12px;font-size:.78rem;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.site{padding:22px;display:grid;gap:14px;min-height:330px}
+.site .s-top{display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:var(--mut)}
+.site .s-name{font-family:var(--disp);font-weight:800;font-size:1.35rem;color:var(--fg)}
+.site .s-h{font-family:var(--disp);font-size:1.6rem;font-weight:700;line-height:1.1;min-height:3.3rem}
+.site .s-sub{font-size:.86rem;color:var(--mut)}
+.site .s-btn{justify-self:start;background:var(--amber);color:#07080a;font-weight:700;font-size:.82rem;padding:8px 14px;border-radius:9px}
+.site .s-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.site .s-cards div{background:var(--surf2);border:1px solid var(--line);border-radius:10px;padding:10px;font-size:.78rem;color:var(--mut)}
+.site .s-cards b{display:block;color:var(--fg);font-size:.86rem;margin-bottom:2px}
+.fade{animation:fadeIn .45s ease both}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* secciones */
+section{padding-block:72px}
+.head{max-width:640px;margin-bottom:34px;display:grid;gap:12px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.tab{background:var(--surf);color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:9px 18px;font:500 .95rem var(--body);cursor:pointer;transition:all .18s}
+.tab:hover{color:var(--fg);border-color:#34475c}
+.tab[aria-selected="true"]{background:var(--amber);color:#07080a;border-color:var(--amber);font-weight:700}
+
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--surf);border:1px solid var(--line);border-radius:16px;padding:26px;display:grid;gap:12px;align-content:start;transition:transform .22s ease,border-color .22s,background .22s}
+.card:hover{transform:translateY(-5px);border-color:#3b516a;background:var(--surf2)}
+.card .ico{width:44px;height:44px;border-radius:12px;background:#d7e4ff1a;color:var(--amber);display:grid;place-items:center}
+.card .ico svg{width:22px;height:22px}
+.card p{color:var(--mut);font-size:.96rem}
+
+/* pasos */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surf)}
+.step{padding:26px;border-right:1px solid var(--line);display:grid;gap:8px;align-content:start}
+.step:last-child{border-right:0}
+.step small{color:var(--amber);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.72rem}
+.step p{color:var(--mut);font-size:.93rem}
+
+/* precios + calculadora */
+.price-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:start}
+.plans{display:grid;gap:14px}
+.plan{background:var(--surf);border:1px solid var(--line);border-radius:16px;padding:24px;display:grid;grid-template-columns:1fr auto;gap:8px 20px;align-items:center}
+.plan.pop{border-color:#3a4558;background:linear-gradient(180deg,#d7e4ff10,var(--surf))}
+.plan .pr{font-family:var(--disp);font-weight:800;font-size:2rem;color:var(--amber);text-align:right;line-height:1}
+.plan .pr small{display:block;font-family:var(--body);font-weight:500;font-size:.78rem;color:var(--mut);margin-top:4px}
+.plan p{color:var(--mut);font-size:.93rem;grid-column:1}
+.calc{background:var(--surf);border:1px solid var(--line);border-radius:16px;padding:26px;display:grid;gap:14px;position:sticky;top:20px}
+.opt{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--surf2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;transition:border-color .18s}
+.opt:hover{border-color:#3b516a}
+.opt input{accent-color:var(--amber);width:18px;height:18px}
+.opt span{flex:1;font-size:.95rem}
+.opt em{font-style:normal;color:var(--mut);font-size:.9rem}
+.total{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);padding-top:14px}
+.total b{font-family:var(--disp);font-size:2.2rem;color:var(--amber)}
+.note{font-size:.78rem;color:var(--mut)}
+
+details{background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:4px 20px;margin-bottom:10px}
+summary{cursor:pointer;padding:16px 0;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";color:var(--amber);font-size:1.4rem;line-height:1;transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding-bottom:16px;color:var(--mut)}
+
+.contact{background:linear-gradient(135deg,#1b2735,#121a23);border:1px solid var(--line);border-radius:22px;padding:clamp(28px,5vw,56px);display:grid;gap:18px;justify-items:start}
+.num{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.num code{font:700 1.3rem var(--disp);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 14px;user-select:all}
+footer{padding-block:34px 48px;color:var(--mut);font-size:.88rem;border-top:1px solid var(--line);margin-top:30px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+.rv{animation:fadeIn .7s ease both}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media (max-width:900px){
+  .hero,.price-grid{grid-template-columns:1fr}
+  .services{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}.step:nth-child(2){border-right:0}.step:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .browser{transform:none}.calc{position:static}
+}
+@media (max-width:520px){.steps{grid-template-columns:1fr}.step{border-right:0;border-bottom:1px solid var(--line)}.step:last-child{border-bottom:0}
+  .site .s-cards{grid-template-columns:1fr}.plan{grid-template-columns:1fr}.plan .pr{text-align:left}}
+
+/* extra: interaccion */
+.prog{position:fixed;left:0;top:0;height:3px;width:0;background:var(--amber);z-index:50;transition:width .1s linear}
+.spot{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(520px circle at var(--mx,50%) var(--my,30%),var(--amber-a,#d7e4ff14),transparent 60%)}
+.swatches{display:flex;gap:8px;align-items:center;margin-top:14px;color:var(--mut);font-size:.82rem;flex-wrap:wrap}
+.sw{width:22px;height:22px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0;transition:transform .15s}
+.sw:hover{transform:scale(1.2)}.sw[aria-pressed="true"]{border-color:#fff}
+.wa{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;width:58px;height:58px;border-radius:50%;background:var(--amber);color:#07080a;display:grid;place-items:center;box-shadow:0 10px 30px #000a;text-decoration:none;animation:pulse 2.6s ease-in-out infinite}
+.wa svg{width:28px;height:28px}
+@keyframes pulse{0%,100%{box-shadow:0 10px 30px #000a,0 0 0 0 #d7e4ff55}50%{box-shadow:0 10px 30px #000a,0 0 0 14px #d7e4ff00}}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px}
+.stat{background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:20px}
+.stat b{display:block;font-family:var(--disp);font-size:2.2rem;color:var(--amber);line-height:1}
+.stat span{color:var(--mut);font-size:.88rem}
+.ba{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surf);height:340px;user-select:none;touch-action:pan-y}
+.ba .pane{position:absolute;inset:0;padding:26px;display:grid;gap:10px;align-content:start}
+.ba .before{background:#d9d4c7;color:#3b3a36;font-family:"Times New Roman",serif}
+.ba .before h4{margin:0;font-size:1.5rem;color:#6b3a2a}
+.ba .before p{margin:0;font-size:.9rem}
+.ba .before .blink{color:#b00;font-weight:700}
+.ba .after{background:var(--surf2);clip-path:inset(0 0 0 var(--pos,50%))}
+.ba .after h4{font-family:var(--disp);margin:0;font-size:1.6rem}
+.ba .after p{margin:0;color:var(--mut);font-size:.92rem}
+.ba .after .pill{justify-self:start;background:var(--amber);color:#07080a;font-weight:700;padding:8px 14px;border-radius:10px;font-size:.85rem}
+.ba .lbl{position:absolute;top:12px;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding:4px 9px;border-radius:999px;z-index:3}
+.ba .lbl.l{left:12px;background:#0007;color:#fff}.ba .lbl.r{right:12px;background:var(--amber);color:#07080a}
+.ba .handle{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:3px;background:var(--amber);z-index:4;transform:translateX(-50%)}
+.ba .handle::after{content:"\2194";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:var(--amber);color:#07080a;display:grid;place-items:center;font-weight:800;box-shadow:0 4px 14px #0008}
+.ba input[type=range]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:5;margin:0}
+.quiz{background:var(--surf);border:1px solid var(--line);border-radius:18px;padding:28px;display:grid;gap:16px}
+.q-q{font-family:var(--disp);font-size:1.3rem;font-weight:700}
+.q-opts{display:flex;flex-wrap:wrap;gap:10px}
+.q-prog{height:5px;background:var(--surf2);border-radius:5px;overflow:hidden}.q-prog i{display:block;height:100%;background:var(--amber);transition:width .3s}
+dialog{background:var(--surf);color:var(--fg);border:1px solid var(--line);border-radius:18px;padding:0;max-width:680px;width:calc(100% - 32px)}
+dialog::backdrop{background:#000a}
+dialog .in{padding:28px;max-height:78vh;overflow:auto;display:grid;gap:12px}
+dialog h3{font-size:1.5rem}dialog p,dialog li{color:var(--mut);font-size:.94rem}dialog ul{margin:0;padding-left:20px;display:grid;gap:6px}
+.lnk{background:none;border:0;color:var(--mut);cursor:pointer;font:inherit;text-decoration:underline;padding:0}
+.lnk:hover{color:var(--amber)}
+.rv2{transition:opacity .7s ease,transform .7s ease}
+.rv2.pre{opacity:0;transform:translateY(22px)}
+@media (max-width:900px){.stats{grid-template-columns:1fr 1fr}}
+
+/* restyle: futurista, minimal, chic */
+h1,h2,h3{font-weight:300;letter-spacing:-.01em}
+h1{font-size:clamp(2rem,5.4vw,4rem);font-weight:300;letter-spacing:-.035em;line-height:1.04}
+h1 em{font-weight:600;font-style:normal;color:var(--fg)}
+h2{font-size:clamp(1.5rem,3.2vw,2.3rem);font-weight:300}
+h3{font-weight:400;font-size:1.05rem;letter-spacing:0}
+body{font-weight:300}
+.eyebrow{font-family:var(--mono);font-weight:400;font-size:.72rem;letter-spacing:.22em;color:var(--mut)}
+.eyebrow::before{content:"";display:inline-block;width:26px;height:1px;background:var(--amber);vertical-align:middle;margin-right:12px}
+.brand{font-family:var(--disp);font-weight:400;letter-spacing:.08em;font-size:.92rem;text-transform:uppercase}
+.brand b{width:30px;height:30px;border-radius:50%;background:transparent;border:1px solid var(--amber);color:var(--amber);font-size:.8rem}
+.btn{border-radius:999px;background:var(--fg);color:#07080a;font-weight:500;letter-spacing:.02em;padding:13px 26px}
+.btn:hover{background:#fff;box-shadow:0 0 0 6px #ffffff12,0 14px 40px #d7e4ff22}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid #2b313a}
+.btn.ghost:hover{background:#ffffff0a;border-color:#4a5463}
+.card,.plan,.calc,.stat,.quiz,.step,details,.ba,.browser,.contact,dialog{border-radius:20px}
+.card,.plan,.calc,.stat,.quiz,.steps,details{background:transparent;border-color:var(--line)}
+.card:hover{background:#ffffff05;border-color:#3a424e;transform:translateY(-3px)}
+.card .ico{background:transparent;border:1px solid var(--line);border-radius:50%;color:var(--amber)}
+.plan.pop{background:linear-gradient(180deg,#ffffff08,transparent);border-color:#3a4558}
+.plan .pr,.stat b,.total b{font-family:var(--disp);font-weight:300;color:var(--fg)}
+.plan .pr{font-size:1.7rem}
+.plan .pr small,.stat span,.note{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em}
+.facts{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase}
+.facts li::before{background:var(--amber);box-shadow:0 0 12px var(--amber)}
+.tab{border-radius:999px;font-family:var(--mono);font-size:.78rem;letter-spacing:.06em}
+.tab[aria-selected="true"]{background:var(--fg);color:#07080a;border-color:var(--fg)}
+.grid{opacity:.14;background-size:72px 72px}
+.glow i{opacity:.22}
+.glow i:nth-child(1){background:#d7e4ff26}.glow i:nth-child(2){background:#9fb4e033}
+.browser{background:#0a0c0f;box-shadow:0 40px 100px #000c,0 0 0 1px #ffffff0a inset}
+.bar{background:#0f1215}
+.bar i{background:#2a3038}
+.site .s-btn{border-radius:999px;background:var(--fg);color:#07080a}
+.site .s-name{font-family:var(--disp);font-weight:400;font-size:1.05rem;letter-spacing:.04em}
+.site .s-h{font-family:var(--disp);font-weight:300;font-size:1.35rem}
+.step small{font-family:var(--mono);letter-spacing:.16em}
+.ba .after .pill{border-radius:999px;background:var(--fg);color:#07080a}
+.ba .lbl.r{background:var(--fg);color:#07080a}.ba .lbl{font-family:var(--mono)}
+.ba .handle{background:var(--fg)}.ba .handle::after{background:var(--fg);color:#07080a}
+.wa{background:var(--fg);color:#07080a}
+.prog{background:var(--fg)}
+.q-prog i{background:var(--fg)}
+summary{font-weight:400}
+.contact{background:radial-gradient(900px 300px at 20% 0%,#d7e4ff12,transparent),var(--surf);border-radius:28px}
+.num code{font-family:var(--mono);font-weight:500;font-size:1.1rem;border-radius:999px;padding:9px 18px}
+.hero p.lead{font-weight:300;font-size:1.1rem}
+.top{padding-block:26px}
+.lnk{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em}
+</style>
+
+</head>
+<body>
+<div class="prog" id="prog"></div><div class="spot" aria-hidden="true"></div>
+<a class="wa" aria-label="Escribeme por WhatsApp" href="https://wa.me/34745060067?text=Hola%2C%20quiero%20una%20auditor%C3%ADa%20gratis%20de%20mi%20web" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1.1.1-1.8-.1a14 14 0 0 1-5.3-3.3 6 6 0 0 1-1.4-2.7c-.1-.8.4-1.6 1-1.8.3-.1.6 0 .8.4l.7 1.5c.1.3.1.5-.1.7l-.4.5c.4.8 1 1.5 1.8 1.9.5.3.9.5 1.2.4l.6-.7c.2-.2.4-.2.7-.1l1.6.8c.3.1.4.4.3.8z"/></svg></a>
+<div class="glow" aria-hidden="true"><i></i><i></i></div>
+<div class="grid" aria-hidden="true"></div>
+
+<header class="wrap top">
+  <a class="brand" href="#inicio"><b>M</b> Manilow Web</a>
+  <a class="btn" href="https://wa.me/34745060067?text=Hola%2C%20quiero%20una%20auditor%C3%ADa%20gratis%20de%20mi%20web" target="_blank" rel="noopener">Escríbeme por WhatsApp</a>
+</header>
+
+<main class="wrap" id="inicio">
+  <div class="hero">
+    <div class="rv">
+      <span class="eyebrow">Webs para negocios locales</span>
+      <h1 style="margin-top:14px">Tu negocio, <em>visible</em> cuando importa.</h1>
+      <p class="lead">Diseño y mantengo webs rápidas y claras para talleres, bares, clínicas y comercios de la Sierra Norte y Madrid. Que te encuentren, te llamen y te escriban por WhatsApp.</p>
+      <div class="cta">
+        <a class="btn" href="https://wa.me/34745060067?text=Hola%2C%20quiero%20una%20auditor%C3%ADa%20gratis%20de%20mi%20web" target="_blank" rel="noopener">Auditoría gratis de tu web</a>
+        <a class="btn ghost" href="#precios">Ver precios</a>
+      </div>
+      <div class="swatches">Prueba el color de tu marca:<button class="sw" data-c="#d7e4ff" style="background:#d7e4ff" aria-pressed="true" aria-label="Hielo"></button><button class="sw" data-c="#bff5df" style="background:#bff5df" aria-pressed="false" aria-label="Menta"></button><button class="sw" data-c="#f0e6d2" style="background:#f0e6d2" aria-pressed="false" aria-label="Arena"></button><button class="sw" data-c="#e6d3ff" style="background:#e6d3ff" aria-pressed="false" aria-label="Lila"></button></div>
+      <ul class="facts"><li>Desde 250 €</li><li>Mantenimiento desde 29 €/mes</li><li>Respuesta el mismo día</li></ul>
+    </div>
+
+    <div class="browser rv" aria-label="Ejemplo de una web de negocio local">
+      <div class="bar"><i></i><i></i><i></i><span id="url">tutaller.es</span></div>
+      <div class="site" id="site"></div>
+    </div>
+  </div>
+
+  <section id="ejemplos" style="padding-top:8px">
+    <div class="head"><span class="eyebrow">Mira cómo quedaría</span><h2>Elige tu tipo de negocio</h2><p class="mut">Ejemplos orientativos con datos inventados, para que veas la estructura.</p></div>
+    <div class="tabs" role="tablist" id="tabs"></div>
+  </section>
+
+  
+  <section id="datos" style="padding-top:8px">
+    <div class="head"><span class="eyebrow">En cifras</span><h2>Lo que te llevas</h2></div>
+    <div class="stats">
+      <div class="stat"><b data-n="250" data-s=" €">250 €</b><span>Web completa desde</span></div>
+      <div class="stat"><b data-n="29" data-s=" €">29 €</b><span>Mantenimiento al mes</span></div>
+      <div class="stat"><b data-n="14" data-s=" días">14 días</b><span>Hasta que está en línea</span></div>
+      <div class="stat"><b data-n="24" data-s=" h">24 h</b><span>Para responderte</span></div>
+    </div>
+  </section>
+
+  <section id="antes">
+    <div class="head"><span class="eyebrow">El cambio</span><h2>Arrastra y compara</h2><p class="mut">De una web olvidada a una que genera llamadas. Ejemplo ilustrativo.</p></div>
+    <div class="ba" id="ba">
+      <span class="lbl l">Antes</span><span class="lbl r">Después</span>
+      <div class="pane before"><h4>Taller Hermanos López</h4><p class="blink">¡¡ NUEVO !! Visite nuestra web</p><p>Teléfono: consultar. Horario: ver tablón. Contador de visitas: 000412.</p><p>Mecánica, chapa, pintura, electricidad, frenos, aire acondicionado, neumáticos y más cosas.</p></div>
+      <div class="pane after"><h4>Taller López</h4><p>Mecánica de confianza en tu pueblo. Cita en un minuto por WhatsApp.</p><span class="pill">Pedir cita</span><p>Revisión · Neumáticos · Diagnosis · Mapa y horario siempre visibles.</p></div>
+      <div class="handle"></div>
+      <input type="range" min="5" max="95" value="50" id="baR" aria-label="Comparar antes y después">
+    </div>
+  </section>
+
+  <section id="test">
+    <div class="head"><span class="eyebrow">Test rápido</span><h2>¿Te encuentran tus clientes?</h2></div>
+    <div class="quiz" id="quiz"></div>
+  </section>
+
+  <section id="servicios">
+    <div class="head"><span class="eyebrow">Qué hago</span><h2>Lo justo para que te encuentren y te llamen</h2></div>
+    <div class="services">
+      <article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 21h8"/></svg></div><h3>Web profesional</h3><p>Una página clara con tus servicios, horarios, mapa y botón directo a WhatsApp. Se ve bien en el móvil, que es desde donde te buscan.</p></article>
+      <article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div><h3>Aparecer en Google</h3><p>Ficha de Google Maps ordenada y SEO local básico, para salir cuando alguien busca tu oficio en tu pueblo.</p></article>
+      <article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.4 2.4-2.1-.6-.6-2.1z"/></svg></div><h3>Mantenimiento</h3><p>Cambios de precios, fotos y textos, copias de seguridad y que todo siga funcionando. Tú te dedicas a tu negocio.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <div class="head"><span class="eyebrow">Cómo trabajamos</span><h2>De la primera charla a tu web en línea</h2></div>
+    <div class="steps">
+      <div class="step"><small>Paso 1</small><h3>Hablamos</h3><p>Me cuentas qué haces y qué quieres. Te hago una auditoría gratis de lo que tienes.</p></div>
+      <div class="step"><small>Paso 2</small><h3>Propuesta</h3><p>Precio cerrado y por escrito, antes de empezar.</p></div>
+      <div class="step"><small>Paso 3</small><h3>Diseño</h3><p>Te enseño el borrador y lo ajustamos juntos.</p></div>
+      <div class="step"><small>Paso 4</small><h3>Publicación</h3><p>Sale a internet y te explico cómo cambiar lo básico tú mismo.</p></div>
+    </div>
+  </section>
+
+  <section id="precios">
+    <div class="head"><span class="eyebrow">Precios claros</span><h2>Sin letra pequeña</h2><p class="mut">Orientativos. Te doy el precio final tras la primera charla.</p></div>
+    <div class="price-grid">
+      <div class="plans">
+        <div class="plan pop"><div><h3>Web de negocio</h3></div><div class="pr">desde 250 €<small>pago único</small></div><p>Web de una página con servicios, contacto, mapa y WhatsApp. Lista para móvil.</p></div>
+        <div class="plan"><div><h3>Mantenimiento</h3></div><div class="pr">desde 29 €<small>al mes</small></div><p>Cambios, copias de seguridad y soporte para que no te preocupes de nada.</p></div>
+        <div class="plan"><div><h3>Auditoría de tu web</h3></div><div class="pr">0 €<small>sin compromiso</small></div><p>Reviso la web que ya tienes y te digo qué mejorar. Gratis.</p></div>
+      </div>
+      <div class="calc" aria-label="Calculadora orientativa">
+        <h3>Calcula tu web</h3>
+        <label class="opt"><input type="checkbox" data-p="0" checked disabled><span>Web de negocio (base)</span><em>250 €</em></label>
+        <label class="opt"><input type="checkbox" data-p="80"><span>Reservas o citas online</span><em>+80 €</em></label>
+        <label class="opt"><input type="checkbox" data-p="60"><span>SEO local y Google Maps</span><em>+60 €</em></label>
+        <label class="opt"><input type="checkbox" data-p="50"><span>Blog o noticias</span><em>+50 €</em></label>
+        <label class="opt"><input type="checkbox" data-p="200"><span>Tienda online</span><em>+200 €</em></label>
+        <div class="total"><span class="mut">Estimación</span><b id="tot">250 €</b></div>
+        <p class="note">Importe orientativo. Mantenimiento aparte, desde 29 €/mes.</p>
+        <a class="btn" id="calcBtn" href="https://wa.me/34745060067" target="_blank" rel="noopener">Pedir esta propuesta</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head"><h2>Preguntas frecuentes</h2></div>
+    <details><summary>¿Cuánto tarda en estar lista mi web?</summary><p>Una web de una página suele estar publicada en una o dos semanas, según lo rápido que me pases fotos y textos.</p></details>
+    <details><summary>¿Tengo que saber de informática?</summary><p>No. Me encargo de todo y te explico lo poco que necesites. Si prefieres no tocar nada, el mantenimiento lo hago yo.</p></details>
+    <details><summary>¿Y si ya tengo una web?</summary><p>Te la reviso gratis. Si merece la pena mejorarla, te digo qué cambiar y cuánto costaría.</p></details>
+    <details><summary>¿Cómo se paga?</summary><p>Presupuesto cerrado antes de empezar. Puedes pagar la web en dos plazos y el mantenimiento mes a mes.</p></details>
+  </section>
+
+  <section style="padding-top:20px">
+    <div class="contact">
+      <span class="eyebrow">Hablemos</span>
+      <h2>Escríbeme y te devuelvo una auditoría gratis</h2>
+      <p class="mut" style="max-width:34em">Cuéntame tu negocio por WhatsApp. Te contesto el mismo día.</p>
+      <div class="num">
+        <a class="btn" href="https://wa.me/34745060067?text=Hola%2C%20quiero%20una%20auditor%C3%ADa%20gratis%20de%20mi%20web" target="_blank" rel="noopener">Abrir WhatsApp</a>
+        <code id="phone">+34 745 060 067</code>
+        <button class="btn ghost" id="copy" type="button">Copiar número</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap"><span>© Manilow Web · Sebastián Manilow · Madrid</span><span><button class="lnk" data-d="d1" type="button">Aviso legal</button> · <button class="lnk" data-d="d2" type="button">Privacidad</button> · <button class="lnk" data-d="d3" type="button">Cookies</button></span></footer>
+<dialog id="d1"><div class="in"><h3>Aviso legal</h3>
+<p>En cumplimiento de la Ley 34/2002 (LSSI-CE), se informa de que el titular de este sitio web es:</p>
+<ul><li>Titular: Sebastián Manilow</li><li>NIF: [pendiente de alta; se mostrará aquí]</li><li>Localidad: Madrid, España</li><li>Contacto: smanilow@gmail.com · WhatsApp +34 745 060 067</li><li>Actividad: diseño, mantenimiento y posicionamiento local de páginas web</li></ul>
+<p>Los contenidos son propiedad del titular. Los precios mostrados son orientativos y no constituyen una oferta vinculante; la propuesta final se entrega por escrito antes de cualquier contratación. Los ejemplos de negocios de esta página son ilustrativos y sus datos, ficticios.</p>
+<p>El titular no se hace responsable del uso que terceros hagan de la información publicada. Será aplicable la legislación española.</p>
+<button class="btn ghost" data-close type="button">Cerrar</button></div></dialog>
+<dialog id="d2"><div class="in"><h3>Política de privacidad</h3>
+<ul><li>Responsable: Sebastián Manilow (datos en el aviso legal).</li><li>Finalidad: atender tus consultas y preparar las propuestas que solicites.</li><li>Datos que tratamos: los que nos facilitas por WhatsApp (nombre, teléfono, datos de tu negocio).</li><li>Base legal: tu consentimiento al escribirnos y las medidas precontractuales (art. 6.1.a y 6.1.b del RGPD).</li><li>Conservación: mientras dure la relación y los plazos legales aplicables.</li><li>Destinatarios: no cedemos tus datos a terceros salvo obligación legal. Usamos WhatsApp (Meta) como canal de comunicación.</li><li>Derechos: acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a smanilow@gmail.com. Puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).</li></ul>
+<button class="btn ghost" data-close type="button">Cerrar</button></div></dialog>
+<dialog id="d3"><div class="in"><h3>Política de cookies</h3>
+<p>Esta página no instala cookies propias, de análisis ni de publicidad. Para mostrar su tipografía carga fuentes de Google Fonts, por lo que tu navegador se conecta a servidores de Google. Nosotros no guardamos ningún dato tuyo por ello.</p>
+<p>Si en el futuro se añaden analíticas o cookies no necesarias, se pedirá tu consentimiento antes.</p>
+<button class="btn ghost" data-close type="button">Cerrar</button></div></dialog>
+
+<script>
+(function(){
+  var DATA={
+    taller:{url:"tallerlopez.es",n:"Taller López",h:"Mecánica de confianza en tu pueblo",s:"Revisiones, ITV, neumáticos y diagnosis. Cita en un minuto.",b:"Pedir cita",c:[["Revisión","Desde 59 €"],["Neumáticos","Montaje y equilibrado"],["Diagnosis","Coche y furgoneta"]]},
+    bar:{url:"barlaplaza.es",n:"Bar La Plaza",h:"Menú del día y raciones caseras",s:"Cocina de siempre en la plaza. Reserva tu mesa por WhatsApp.",b:"Reservar mesa",c:[["Menú del día","Lunes a viernes"],["Raciones","Para compartir"],["Terraza","Todo el año"]]},
+    pelu:{url:"peluqueriamar.es",n:"Peluquería Mar",h:"Tu pelo, como lo imaginas",s:"Corte, color y tratamientos. Elige tu hora sin llamar.",b:"Reservar cita",c:[["Corte","Mujer y hombre"],["Color","Mechas y balayage"],["Tratamientos","Keratina y más"]]},
+    clinica:{url:"fisioclinica.es",n:"Fisio Clínica",h:"Cuida tu espalda, vuelve a moverte",s:"Fisioterapia y rehabilitación con cita online.",b:"Pedir cita",c:[["Fisioterapia","Valoración inicial"],["Rehabilitación","Lesiones deportivas"],["Pilates","Grupos reducidos"]]}
+  };
+  var order=["taller","bar","pelu","clinica"],names={taller:"Taller",bar:"Bar",pelu:"Peluquería",clinica:"Clínica"};
+  var site=document.getElementById("site"),url=document.getElementById("url"),tabs=document.getElementById("tabs");
+  function show(k){
+    var d=DATA[k];url.textContent=d.url;
+    site.className="site fade";
+    site.innerHTML='<div class="s-top"><span class="s-name">'+d.n+'</span><span>Inicio · Servicios · Contacto</span></div>'
+     +'<div class="s-h">'+d.h+'</div><div class="s-sub">'+d.s+'</div><div class="s-btn">'+d.b+'</div>'
+     +'<div class="s-cards">'+d.c.map(function(x){return "<div><b>"+x[0]+"</b>"+x[1]+"</div>"}).join("")+"</div>";
+    void site.offsetWidth;
+    Array.prototype.forEach.call(tabs.children,function(t){t.setAttribute("aria-selected",t.dataset.k===k)});
+  }
+  order.forEach(function(k){
+    var b=document.createElement("button");b.className="tab";b.type="button";b.setAttribute("role","tab");b.dataset.k=k;b.textContent=names[k];
+    b.addEventListener("click",function(){show(k);clearInterval(timer)});tabs.appendChild(b);
+  });
+  var i=0;show(order[0]);
+  var timer=setInterval(function(){i=(i+1)%order.length;show(order[i])},4200);
+
+  var boxes=document.querySelectorAll(".calc input"),tot=document.getElementById("tot"),btn=document.getElementById("calcBtn");
+  function calc(){
+    var sum=250,items=["Web de negocio"];
+    boxes.forEach(function(b){if(b.checked&&!b.disabled){sum+=+b.dataset.p;items.push(b.parentNode.querySelector("span").textContent)}});
+    tot.textContent=sum+" €";
+    btn.href="https://wa.me/34745060067?text="+encodeURIComponent("Hola, me interesa: "+items.join(", ")+" (estimación "+sum+" €)");
+  }
+  boxes.forEach(function(b){b.addEventListener("change",calc)});calc();
+
+  var cp=document.getElementById("copy");
+  cp.addEventListener("click",function(){
+    var t="+34745060067";
+    function ok(){cp.textContent="Copiado";setTimeout(function(){cp.textContent="Copiar número"},1800)}
+    try{navigator.clipboard.writeText(t).then(ok,function(){sel()})}catch(e){sel()}
+    function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById("phone"));var s=getSelection();s.removeAllRanges();s.addRange(r)}
+  });
+})();
+
+(function(){
+  var root=document.documentElement;
+  var pg=document.getElementById("prog");
+  function sc(){var h=document.documentElement.scrollHeight-innerHeight;pg.style.width=(h>0?scrollY/h*100:0)+"%"}
+  addEventListener("scroll",sc,{passive:true});sc();
+  addEventListener("pointermove",function(e){root.style.setProperty("--mx",e.clientX+"px");root.style.setProperty("--my",e.clientY+"px")},{passive:true});
+  var br=document.querySelector(".browser");
+  if(br&&matchMedia("(hover:hover)").matches){
+    br.addEventListener("pointermove",function(e){var r=br.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;br.style.transform="perspective(1200px) rotateY("+(x*10)+"deg) rotateX("+(-y*8)+"deg)"});
+    br.addEventListener("pointerleave",function(){br.style.transform=""});
+  }
+  document.querySelectorAll(".sw").forEach(function(b){b.addEventListener("click",function(){
+    document.querySelectorAll(".sw").forEach(function(x){x.setAttribute("aria-pressed","false")});b.setAttribute("aria-pressed","true");
+    root.style.setProperty("--amber",b.dataset.c);root.style.setProperty("--amber-a",b.dataset.c+"22");
+  })});
+  function count(el){var to=+el.dataset.n,t0=performance.now();(function f(t){var k=Math.min(1,(t-t0)/1200);el.textContent=Math.round(to*(1-Math.pow(1-k,3)))+el.dataset.s;if(k<1)requestAnimationFrame(f)})(t0)}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;e.target.classList.remove("pre");
+    e.target.querySelectorAll("[data-n]").forEach(count);io.unobserve(e.target)})},{threshold:.2});
+  document.querySelectorAll("main section").forEach(function(sec){sec.classList.add("rv2");
+    if(sec.getBoundingClientRect().top>innerHeight*.9){sec.classList.add("pre");io.observe(sec)}});
+  var ba=document.getElementById("ba"),rg=document.getElementById("baR");
+  rg.addEventListener("input",function(){ba.style.setProperty("--pos",rg.value+"%")});
+  var Q=[["¿Tu negocio sale cuando buscas en Google Maps?",["Sí, bien","Más o menos","No sale"]],["¿Tienes una web que se vea bien en el móvil?",["Sí","Tengo una antigua","No tengo"]],["¿Tus clientes pueden pedir cita o escribirte con un toque?",["Sí","Solo por teléfono","No"]]];
+  var qz=document.getElementById("quiz"),score=0,qi=0;
+  function render(){
+    if(qi>=Q.length){var msg=score>=5?"Vas bien, pero hay margen. Una auditoría gratis te dirá dónde.":score>=3?"Estás perdiendo clientes que te buscan desde el móvil. Se arregla rápido.":"Ahora mismo muchos clientes no te encuentran. Es justo lo que arreglo.";
+      qz.innerHTML='<div class="q-q">'+msg+'</div><div class="q-opts"><a class="btn" target="_blank" rel="noopener" href="https://wa.me/34745060067?text='+encodeURIComponent("Hola, hice el test de tu web y quiero una auditoría gratis")+'">Quiero mi auditoría gratis</a><button class="btn ghost" id="qr" type="button">Repetir</button></div>';
+      document.getElementById("qr").onclick=function(){qi=0;score=0;render()};return}
+    qz.innerHTML='<div class="q-prog"><i style="width:'+(qi/Q.length*100)+'%"></i></div><div class="q-q">'+Q[qi][0]+'</div><div class="q-opts">'+Q[qi][1].map(function(o,i){return '<button class="tab" data-i="'+i+'" type="button">'+o+'</button>'}).join("")+'</div>';
+    qz.querySelectorAll(".tab").forEach(function(b){b.onclick=function(){score+=2-(+b.dataset.i);qi++;render()}});
+  }
+  render();
+  document.querySelectorAll("[data-d]").forEach(function(b){b.onclick=function(){var d=document.getElementById(b.dataset.d);if(d.showModal)d.showModal();else d.setAttribute("open","")}});
+  document.querySelectorAll("[data-close]").forEach(function(b){b.onclick=function(){b.closest("dialog").close()}});
+  document.querySelectorAll("dialog").forEach(function(d){d.addEventListener("click",function(e){if(e.target===d)d.close()})});
+})();
+</script>
+</body>
+</html>
