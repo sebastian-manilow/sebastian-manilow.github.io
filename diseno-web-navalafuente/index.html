@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Diseño web en Navalafuente · Manilow Web</title>
+<meta name="description" content="Páginas web para autónomos, comercios y servicios de Navalafuente y la Sierra Norte de Madrid. Desde 250 €, con mantenimiento.">
+<link rel="canonical" href="https://sebastian-manilow.github.io/diseno-web-navalafuente/"><meta name="robots" content="index,follow">
+<meta property="og:type" content="website"><meta property="og:locale" content="es_ES"><meta property="og:title" content="Diseño web en Navalafuente"><meta property="og:description" content="Páginas web para autónomos, comercios y servicios de Navalafuente y la Sierra Norte de Madrid. Desde 250 €, con mantenimiento."><meta property="og:url" content="https://sebastian-manilow.github.io/diseno-web-navalafuente/">
+<meta name="theme-color" content="#07080a"><link rel="icon" href="https://sebastian-manilow.github.io/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600&family=Manrope:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Service", "name": "Diseño web en Navalafuente", "provider": {"@type": "ProfessionalService", "name": "Manilow Web", "url": "https://sebastian-manilow.github.io/", "telephone": "+34745060067"}, "areaServed": "Madrid", "url": "https://sebastian-manilow.github.io/diseno-web-navalafuente/", "description": "Páginas web para autónomos, comercios y servicios de Navalafuente y la Sierra Norte de Madrid. Desde 250 €, con mantenimiento."}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Cuánto cuesta?", "acceptedAnswer": {"@type": "Answer", "text": "Desde 250 € la web y desde 29 €/mes el mantenimiento. Te doy el precio final tras hablar contigo."}}, {"@type": "Question", "name": "¿Y si ya tengo una web?", "acceptedAnswer": {"@type": "Answer", "text": "Te hago una auditoría gratis y te digo qué conviene mejorar."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Manilow Web", "item": "https://sebastian-manilow.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Diseño web en Navalafuente", "item": "https://sebastian-manilow.github.io/diseno-web-navalafuente/"}]}]}</script>
+<style>
+/* Concepto: taller digital de noche. Fondo tinta oscuro, una sola luz ámbar, maqueta de navegador viva como protagonista. */
+:root{
+  --bg:#07080a; --surf:#0d0f12; --surf2:#13161a; --line:#1e2227;
+  --fg:#f2f4f7; --mut:#8a909b; --amber:#d7e4ff; --amber-d:#aebfe6; --ok:#bff5df;
+  --disp:"Unbounded","Segoe UI",system-ui,sans-serif; --body:"Manrope","Segoe UI",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));overflow-x:hidden}
+a{color:inherit}
+.wrap{max-width:1100px;margin:0 auto}
+h1,h2,h3{font-family:var(--disp);line-height:1.08;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.3rem,6vw,4.4rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.7rem,3.6vw,2.7rem);font-weight:700;letter-spacing:-.01em}
+h3{font-size:1.25rem;font-weight:700}
+.eyebrow{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);font-weight:700}
+p{margin:0}
+.mut{color:var(--mut)}
+
+/* ambiente */
+.glow{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.glow i{position:absolute;border-radius:50%;filter:blur(90px);opacity:.28;animation:drift 18s ease-in-out infinite alternate}
+.glow i:nth-child(1){width:46vw;height:46vw;left:-10vw;top:-12vw;background:#d7e4ff33}
+.glow i:nth-child(2){width:40vw;height:40vw;right:-12vw;top:30vh;background:#8fa8d633;animation-duration:24s}
+@keyframes drift{to{transform:translate3d(6vw,5vh,0) scale(1.12)}}
+.grid{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.22;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:56px 56px;mask-image:radial-gradient(ellipse at 50% 0%,#000 0%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 50% 0%,#000 0%,transparent 70%)}
+main,header,footer{position:relative;z-index:1}
+
+/* cabecera */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px}
+.brand{font-family:var(--disp);font-weight:800;font-size:1.2rem;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand b{display:grid;place-items:center;width:34px;height:34px;border-radius:9px;background:var(--amber);color:#07080a;font-size:1rem}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--amber);color:#07080a;font-weight:700;text-decoration:none;
+  padding:13px 22px;border-radius:12px;border:0;cursor:pointer;font:700 1rem var(--body);transition:transform .18s ease,box-shadow .18s ease,background .18s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px #d7e4ff33;background:#ffffff}
+.btn:focus-visible,summary:focus-visible,.tab:focus-visible,input:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
+.btn.ghost:hover{background:var(--surf);box-shadow:none;border-color:#34475c}
+.top .btn{padding:10px 16px;font-size:.92rem}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding-block:56px 72px}
+.hero p.lead{font-size:1.15rem;color:var(--mut);max-width:34em;margin-top:22px}
+.hero h1 em{font-style:normal;color:var(--amber)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.facts{display:flex;flex-wrap:wrap;gap:22px;margin-top:34px;padding:0;list-style:none;color:var(--mut);font-size:.92rem}
+.facts li{display:flex;align-items:center;gap:8px}
+.facts li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ok)}
+
+/* maqueta navegador */
+.browser{background:var(--surf);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 30px 80px #0008;
+  transform:perspective(1200px) rotateY(-5deg) rotateX(2deg);transition:transform .5s ease}
+.browser:hover{transform:perspective(1200px) rotateY(0) rotateX(0)}
+.bar{display:flex;align-items:center;gap:7px;padding:12px 14px;background:var(--surf2);border-bottom:1px solid var(--line)}
+.bar i{width:10px;height:10px;border-radius:50%;background:#334355}
+.bar span{margin-left:10px;flex:1;background:var(--bg);border-radius:7px;padding:4px 12px;font-size:.78rem;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.site{padding:22px;display:grid;gap:14px;min-height:330px}
+.site .s-top{display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:var(--mut)}
+.site .s-name{font-family:var(--disp);font-weight:800;font-size:1.35rem;color:var(--fg)}
+.site .s-h{font-family:var(--disp);font-size:1.6rem;font-weight:700;line-height:1.1;min-height:3.3rem}
+.site .s-sub{font-size:.86rem;color:var(--mut)}
+.site .s-btn{justify-self:start;background:var(--amber);color:#07080a;font-weight:700;font-size:.82rem;padding:8px 14px;border-radius:9px}
+.site .s-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.site .s-cards div{background:var(--surf2);border:1px solid var(--line);border-radius:10px;padding:10px;font-size:.78rem;color:var(--mut)}
+.site .s-cards b{display:block;color:var(--fg);font-size:.86rem;margin-bottom:2px}
+.fade{animation:fadeIn .45s ease both}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* secciones */
+section{padding-block:72px}
+.head{max-width:640px;margin-bottom:34px;display:grid;gap:12px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.tab{background:var(--surf);color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:9px 18px;font:500 .95rem var(--body);cursor:pointer;transition:all .18s}
+.tab:hover{color:var(--fg);border-color:#34475c}
+.tab[aria-selected="true"]{background:var(--amber);color:#07080a;border-color:var(--amber);font-weight:700}
+
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--surf);border:1px solid var(--line);border-radius:16px;padding:26px;display:grid;gap:12px;align-content:start;transition:transform .22s ease,border-color .22s,background .22s}
+.card:hover{transform:translateY(-5px);border-color:#3b516a;background:var(--surf2)}
+.card .ico{width:44px;height:44px;border-radius:12px;background:#d7e4ff1a;color:var(--amber);display:grid;place-items:center}
+.card .ico svg{width:22px;height:22px}
+.card p{color:var(--mut);font-size:.96rem}
+
+/* pasos */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surf)}
+.step{padding:26px;border-right:1px solid var(--line);display:grid;gap:8px;align-content:start}
+.step:last-child{border-right:0}
+.step small{color:var(--amber);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.72rem}
+.step p{color:var(--mut);font-size:.93rem}
+
+/* precios + calculadora */
+.price-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:start}
+.plans{display:grid;gap:14px}
+.plan{background:var(--surf);border:1px solid var(--line);border-radius:16px;padding:24px;display:grid;grid-template-columns:1fr auto;gap:8px 20px;align-items:center}
+.plan.pop{border-color:#3a4558;background:linear-gradient(180deg,#d7e4ff10,var(--surf))}
+.plan .pr{font-family:var(--disp);font-weight:800;font-size:2rem;color:var(--amber);text-align:right;line-height:1}
+.plan .pr small{display:block;font-family:var(--body);font-weight:500;font-size:.78rem;color:var(--mut);margin-top:4px}
+.plan p{color:var(--mut);font-size:.93rem;grid-column:1}
+.calc{background:var(--surf);border:1px solid var(--line);border-radius:16px;padding:26px;display:grid;gap:14px;position:sticky;top:20px}
+.opt{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--surf2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;transition:border-color .18s}
+.opt:hover{border-color:#3b516a}
+.opt input{accent-color:var(--amber);width:18px;height:18px}
+.opt span{flex:1;font-size:.95rem}
+.opt em{font-style:normal;color:var(--mut);font-size:.9rem}
+.total{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);padding-top:14px}
+.total b{font-family:var(--disp);font-size:2.2rem;color:var(--amber)}
+.note{font-size:.78rem;color:var(--mut)}
+
+details{background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:4px 20px;margin-bottom:10px}
+summary{cursor:pointer;padding:16px 0;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";color:var(--amber);font-size:1.4rem;line-height:1;transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding-bottom:16px;color:var(--mut)}
+
+.contact{background:linear-gradient(135deg,#1b2735,#121a23);border:1px solid var(--line);border-radius:22px;padding:clamp(28px,5vw,56px);display:grid;gap:18px;justify-items:start}
+.num{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.num code{font:700 1.3rem var(--disp);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 14px;user-select:all}
+footer{padding-block:34px 48px;color:var(--mut);font-size:.88rem;border-top:1px solid var(--line);margin-top:30px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+.rv{animation:fadeIn .7s ease both}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media (max-width:900px){
+  .hero,.price-grid{grid-template-columns:1fr}
+  .services{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}.step:nth-child(2){border-right:0}.step:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .browser{transform:none}.calc{position:static}
+}
+@media (max-width:520px){.steps{grid-template-columns:1fr}.step{border-right:0;border-bottom:1px solid var(--line)}.step:last-child{border-bottom:0}
+  .site .s-cards{grid-template-columns:1fr}.plan{grid-template-columns:1fr}.plan .pr{text-align:left}}
+
+/* extra: interaccion */
+.prog{position:fixed;left:0;top:0;height:3px;width:0;background:var(--amber);z-index:50;transition:width .1s linear}
+.spot{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(520px circle at var(--mx,50%) var(--my,30%),var(--amber-a,#d7e4ff14),transparent 60%)}
+.swatches{display:flex;gap:8px;align-items:center;margin-top:14px;color:var(--mut);font-size:.82rem;flex-wrap:wrap}
+.sw{width:22px;height:22px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0;transition:transform .15s}
+.sw:hover{transform:scale(1.2)}.sw[aria-pressed="true"]{border-color:#fff}
+.wa{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;width:58px;height:58px;border-radius:50%;background:var(--amber);color:#07080a;display:grid;place-items:center;box-shadow:0 10px 30px #000a;text-decoration:none;animation:pulse 2.6s ease-in-out infinite}
+.wa svg{width:28px;height:28px}
+@keyframes pulse{0%,100%{box-shadow:0 10px 30px #000a,0 0 0 0 #d7e4ff55}50%{box-shadow:0 10px 30px #000a,0 0 0 14px #d7e4ff00}}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px}
+.stat{background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:20px}
+.stat b{display:block;font-family:var(--disp);font-size:2.2rem;color:var(--amber);line-height:1}
+.stat span{color:var(--mut);font-size:.88rem}
+.ba{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surf);height:340px;user-select:none;touch-action:pan-y}
+.ba .pane{position:absolute;inset:0;padding:26px;display:grid;gap:10px;align-content:start}
+.ba .before{background:#d9d4c7;color:#3b3a36;font-family:"Times New Roman",serif}
+.ba .before h4{margin:0;font-size:1.5rem;color:#6b3a2a}
+.ba .before p{margin:0;font-size:.9rem}
+.ba .before .blink{color:#b00;font-weight:700}
+.ba .after{background:var(--surf2);clip-path:inset(0 0 0 var(--pos,50%))}
+.ba .after h4{font-family:var(--disp);margin:0;font-size:1.6rem}
+.ba .after p{margin:0;color:var(--mut);font-size:.92rem}
+.ba .after .pill{justify-self:start;background:var(--amber);color:#07080a;font-weight:700;padding:8px 14px;border-radius:10px;font-size:.85rem}
+.ba .lbl{position:absolute;top:12px;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding:4px 9px;border-radius:999px;z-index:3}
+.ba .lbl.l{left:12px;background:#0007;color:#fff}.ba .lbl.r{right:12px;background:var(--amber);color:#07080a}
+.ba .handle{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:3px;background:var(--amber);z-index:4;transform:translateX(-50%)}
+.ba .handle::after{content:"\2194";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:var(--amber);color:#07080a;display:grid;place-items:center;font-weight:800;box-shadow:0 4px 14px #0008}
+.ba input[type=range]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:5;margin:0}
+.quiz{background:var(--surf);border:1px solid var(--line);border-radius:18px;padding:28px;display:grid;gap:16px}
+.q-q{font-family:var(--disp);font-size:1.3rem;font-weight:700}
+.q-opts{display:flex;flex-wrap:wrap;gap:10px}
+.q-prog{height:5px;background:var(--surf2);border-radius:5px;overflow:hidden}.q-prog i{display:block;height:100%;background:var(--amber);transition:width .3s}
+dialog{background:var(--surf);color:var(--fg);border:1px solid var(--line);border-radius:18px;padding:0;max-width:680px;width:calc(100% - 32px)}
+dialog::backdrop{background:#000a}
+dialog .in{padding:28px;max-height:78vh;overflow:auto;display:grid;gap:12px}
+dialog h3{font-size:1.5rem}dialog p,dialog li{color:var(--mut);font-size:.94rem}dialog ul{margin:0;padding-left:20px;display:grid;gap:6px}
+.lnk{background:none;border:0;color:var(--mut);cursor:pointer;font:inherit;text-decoration:underline;padding:0}
+.lnk:hover{color:var(--amber)}
+.rv2{transition:opacity .7s ease,transform .7s ease}
+.rv2.pre{opacity:0;transform:translateY(22px)}
+@media (max-width:900px){.stats{grid-template-columns:1fr 1fr}}
+
+/* restyle: futurista, minimal, chic */
+h1,h2,h3{font-weight:300;letter-spacing:-.01em}
+h1{font-size:clamp(2rem,5.4vw,4rem);font-weight:300;letter-spacing:-.035em;line-height:1.04}
+h1 em{font-weight:600;font-style:normal;color:var(--fg)}
+h2{font-size:clamp(1.5rem,3.2vw,2.3rem);font-weight:300}
+h3{font-weight:400;font-size:1.05rem;letter-spacing:0}
+body{font-weight:300}
+.eyebrow{font-family:var(--mono);font-weight:400;font-size:.72rem;letter-spacing:.22em;color:var(--mut)}
+.eyebrow::before{content:"";display:inline-block;width:26px;height:1px;background:var(--amber);vertical-align:middle;margin-right:12px}
+.brand{font-family:var(--disp);font-weight:400;letter-spacing:.08em;font-size:.92rem;text-transform:uppercase}
+.brand b{width:30px;height:30px;border-radius:50%;background:transparent;border:1px solid var(--amber);color:var(--amber);font-size:.8rem}
+.btn{border-radius:999px;background:var(--fg);color:#07080a;font-weight:500;letter-spacing:.02em;padding:13px 26px}
+.btn:hover{background:#fff;box-shadow:0 0 0 6px #ffffff12,0 14px 40px #d7e4ff22}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid #2b313a}
+.btn.ghost:hover{background:#ffffff0a;border-color:#4a5463}
+.card,.plan,.calc,.stat,.quiz,.step,details,.ba,.browser,.contact,dialog{border-radius:20px}
+.card,.plan,.calc,.stat,.quiz,.steps,details{background:transparent;border-color:var(--line)}
+.card:hover{background:#ffffff05;border-color:#3a424e;transform:translateY(-3px)}
+.card .ico{background:transparent;border:1px solid var(--line);border-radius:50%;color:var(--amber)}
+.plan.pop{background:linear-gradient(180deg,#ffffff08,transparent);border-color:#3a4558}
+.plan .pr,.stat b,.total b{font-family:var(--disp);font-weight:300;color:var(--fg)}
+.plan .pr{font-size:1.7rem}
+.plan .pr small,.stat span,.note{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em}
+.facts{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase}
+.facts li::before{background:var(--amber);box-shadow:0 0 12px var(--amber)}
+.tab{border-radius:999px;font-family:var(--mono);font-size:.78rem;letter-spacing:.06em}
+.tab[aria-selected="true"]{background:var(--fg);color:#07080a;border-color:var(--fg)}
+.grid{opacity:.14;background-size:72px 72px}
+.glow i{opacity:.22}
+.glow i:nth-child(1){background:#d7e4ff26}.glow i:nth-child(2){background:#9fb4e033}
+.browser{background:#0a0c0f;box-shadow:0 40px 100px #000c,0 0 0 1px #ffffff0a inset}
+.bar{background:#0f1215}
+.bar i{background:#2a3038}
+.site .s-btn{border-radius:999px;background:var(--fg);color:#07080a}
+.site .s-name{font-family:var(--disp);font-weight:400;font-size:1.05rem;letter-spacing:.04em}
+.site .s-h{font-family:var(--disp);font-weight:300;font-size:1.35rem}
+.step small{font-family:var(--mono);letter-spacing:.16em}
+.ba .after .pill{border-radius:999px;background:var(--fg);color:#07080a}
+.ba .lbl.r{background:var(--fg);color:#07080a}.ba .lbl{font-family:var(--mono)}
+.ba .handle{background:var(--fg)}.ba .handle::after{background:var(--fg);color:#07080a}
+.wa{background:var(--fg);color:#07080a}
+.prog{background:var(--fg)}
+.q-prog i{background:var(--fg)}
+summary{font-weight:400}
+.contact{background:radial-gradient(900px 300px at 20% 0%,#d7e4ff12,transparent),var(--surf);border-radius:28px}
+.num code{font-family:var(--mono);font-weight:500;font-size:1.1rem;border-radius:999px;padding:9px 18px}
+.hero p.lead{font-weight:300;font-size:1.1rem}
+.top{padding-block:26px}
+.lnk{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em}
+
+.pg{max-width:760px;margin:0 auto;padding-block:40px 80px}
+.pg h1{margin:14px 0 18px} .pg h2{font-size:1.35rem;margin:34px 0 12px} .pg ul{padding-left:20px;display:grid;gap:8px;color:var(--mut)}
+.pg .lead{color:var(--mut);font-size:1.1rem} .more{display:flex;flex-wrap:wrap;gap:10px;margin-top:40px} .more a{color:var(--mut);font-size:.9rem}
+</style></head>
+<body>
+<header class="wrap top"><a class="brand" href="https://sebastian-manilow.github.io/"><b>M</b> Manilow Web</a><a class="btn" href="https://wa.me/34745060067?text=Hola%2C%20soy%20de%20Navalafuente%20y%20quiero%20una%20web" target="_blank" rel="noopener">WhatsApp</a></header>
+<main class="wrap pg">
+<nav class="mut" style="font-size:.85rem"><a href="https://sebastian-manilow.github.io/">Inicio</a> › Diseño web en Navalafuente</nav>
+<span class="eyebrow">Manilow Web · Madrid</span>
+<h1>Diseño web para autónomos y negocios de Navalafuente</h1><p class="lead">Si tienes un negocio o das un servicio en Navalafuente o en los pueblos de alrededor, una web sencilla te ayuda a que tus vecinos y clientes te encuentren.</p>
+<div class="cta"><a class="btn" href="https://wa.me/34745060067?text=Hola%2C%20soy%20de%20Navalafuente%20y%20quiero%20una%20web" target="_blank" rel="noopener">Pedir auditoría gratis</a><a class="btn ghost" href="https://sebastian-manilow.github.io/#precios">Ver precios</a></div>
+<h2>Ideal para</h2><ul><li>Autónomos y oficios: electricistas, fontaneros, albañiles, jardinería.</li><li>Comercios y hostelería del pueblo.</li><li>Servicios profesionales y asociaciones.</li></ul><h2>Cómo trabajo</h2><ul><li>Charla por WhatsApp y propuesta cerrada por escrito.</li><li>Diseño a medida de lo que ofreces.</li><li>Publicación y mantenimiento para que no te preocupes de nada.</li></ul>
+<h2>Preguntas frecuentes</h2><details><summary>¿Cuánto cuesta?</summary><p>Desde 250 € la web y desde 29 €/mes el mantenimiento. Te doy el precio final tras hablar contigo.</p></details><details><summary>¿Y si ya tengo una web?</summary><p>Te hago una auditoría gratis y te digo qué conviene mejorar.</p></details>
+<div class="more"><a href="https://sebastian-manilow.github.io/web-taller-mecanico-madrid/">Web para taller mecánico en Madrid</a><a href="https://sebastian-manilow.github.io/web-bar-restaurante-sierra-norte/">Web para bar y restaurante en la Sierra Norte</a><a href="https://sebastian-manilow.github.io/web-clinica-fisioterapia-madrid/">Web para clínica y fisioterapia en Madrid</a><a href="https://sebastian-manilow.github.io/diseno-web-colmenar-viejo/">Diseño web en Colmenar Viejo</a></div>
+</main>
+<footer class="wrap"><span>© Manilow Web · Sebastián Manilow · Madrid</span><span><a href="https://sebastian-manilow.github.io/" class="lnk">Aviso legal y privacidad</a></span></footer>
+</body></html>
