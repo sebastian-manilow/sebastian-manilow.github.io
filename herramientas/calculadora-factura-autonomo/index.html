@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Calculadora de factura para autónomos: IVA e IRPF · Manilow Web</title>
+<meta name="description" content="Calcula gratis tu factura de autónomo: base imponible, IVA (21, 10, 4 o 0 %), retención de IRPF (15, 7 o 19 %) y total a cobrar, con desglose. Sin guardar tus datos.">
+<link rel="canonical" href="https://sebastian-manilow.github.io/herramientas/calculadora-factura-autonomo/"><meta name="robots" content="index,follow">
+<meta property="og:type" content="website"><meta property="og:locale" content="es_ES"><meta property="og:title" content="Calculadora de factura para autónomos"><meta property="og:description" content="Base, IVA, retención de IRPF y total a cobrar con desglose. Gratis y sin guardar datos."><meta property="og:url" content="https://sebastian-manilow.github.io/herramientas/calculadora-factura-autonomo/">
+<meta name="theme-color" content="#07080a"><link rel="icon" href="https://sebastian-manilow.github.io/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600&family=Manrope:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Calculadora de factura para autónomos","url":"https://sebastian-manilow.github.io/herramientas/calculadora-factura-autonomo/","applicationCategory":"FinanceApplication","operatingSystem":"Any","inLanguage":"es","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Sebastián Manilow"},"description":"Calcula base imponible, IVA, retención de IRPF y total a cobrar de una factura de autónomo."},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Qué retención de IRPF se aplica en una factura de autónomo?","acceptedAnswer":{"@type":"Answer","text":"El tipo general para actividades profesionales es del 15 %. Los autónomos que inician actividad pueden aplicar el 7 % en el año de inicio y en los dos siguientes, si no ejercieron actividad profesional en el año anterior y lo comunican al pagador."}},{"@type":"Question","name":"¿La retención se calcula sobre la base o sobre el total con IVA?","acceptedAnswer":{"@type":"Answer","text":"Sobre la base imponible, sin incluir el IVA."}},{"@type":"Question","name":"¿Guardáis los datos que escribo?","acceptedAnswer":{"@type":"Answer","text":"No. Los cálculos se hacen en tu navegador y no se envían ni se almacenan."}},{"@type":"Question","name":"¿Es asesoramiento fiscal?","acceptedAnswer":{"@type":"Answer","text":"No. Es una herramienta orientativa. Confirma tu caso con una gestoría o con la Agencia Tributaria."}}]}]}</script>
+<style>
+:root{--bg:#07080a;--surf:#0d0f12;--surf2:#13161a;--line:#2a3038;--fg:#f2f4f7;--mut:#a3a9b4;--amber:#d7e4ff;--ok:#bff5df;--bad:#ffb4b4;--disp:"Unbounded","Segoe UI",system-ui,sans-serif;--body:"Manrope","Segoe UI",system-ui,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.65;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));overflow-x:hidden}
+a{color:var(--amber)}.wrap{max-width:820px;margin:0 auto}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px;border-bottom:1px solid var(--line)}
+.brand{font-family:var(--disp);font-weight:700;font-size:1.05rem;text-decoration:none;color:var(--fg)}
+.cta{background:var(--amber);color:#07080a;padding:11px 18px;border-radius:999px;font-weight:700;text-decoration:none;font-size:.95rem;display:inline-block}
+h1{font-family:var(--disp);font-size:clamp(1.7rem,5vw,2.6rem);line-height:1.15;margin:36px 0 10px;text-wrap:balance}
+h2{font-family:var(--disp);font-size:1.25rem;margin:36px 0 10px}
+.card{background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:20px}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+label{display:block;font-weight:700;margin-bottom:6px;font-size:.95rem}
+input,select{width:100%;background:var(--surf2);color:var(--fg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit}
+:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.hint{color:var(--mut);font-size:.88rem;margin-top:4px}
+.result{margin-top:20px}
+table{width:100%;border-collapse:collapse}
+td{padding:10px 4px;border-bottom:1px solid var(--line)}td:last-child{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.total td{font-weight:800;font-size:1.15rem;color:var(--ok);border-bottom:0}
+.err{color:var(--bad);font-weight:700}
+.aviso{background:var(--surf);border:1px solid var(--line);border-left:4px solid var(--amber);border-radius:10px;padding:14px 16px;color:#d4d8df;font-size:.95rem;margin:22px 0}
+details{border-bottom:1px solid var(--line);padding:12px 0}summary{cursor:pointer;font-weight:700}
+footer{color:var(--mut);font-size:.9rem;padding:48px 0 70px}
+</style></head><body>
+<div class="wrap">
+<header class="top"><a class="brand" href="https://sebastian-manilow.github.io/">Manilow Web</a><a class="cta" href="https://wa.me/34745060067?text=Hola%2C%20vengo%20de%20la%20calculadora%20de%20factura">WhatsApp</a></header>
+<main>
+<h1>Calculadora de factura para autónomos</h1>
+<p>Calcula la base imponible, el IVA, la retención de IRPF y el total a cobrar de tu factura, con desglose. Gratis, en tu navegador, sin guardar nada.</p>
+<form class="card" id="f" novalidate>
+<div class="row">
+<div><label for="modo">Qué importe tienes</label><select id="modo"><option value="base">Base imponible (sin IVA)</option><option value="total">Total con IVA (sin retención)</option></select></div>
+<div><label for="importe">Importe en euros</label><input id="importe" inputmode="decimal" autocomplete="off" value="1000" aria-describedby="h-importe"><div class="hint" id="h-importe">Acepta 1234,56 · 1.234,56 · 1234.56. Un importe negativo sirve para una factura rectificativa.</div></div>
+<div><label for="iva">IVA</label><select id="iva"><option value="21">21 % (general)</option><option value="10">10 % (reducido)</option><option value="4">4 % (superreducido)</option><option value="0">0 % (exento / no sujeto)</option></select></div>
+<div><label for="irpf">Retención de IRPF</label><select id="irpf"><option value="15">15 % (profesionales)</option><option value="7">7 % (inicio de actividad)</option><option value="19">19 % (alquileres u otros)</option><option value="0">0 % (sin retención)</option></select></div>
+</div>
+<div class="result" role="status" aria-live="polite" id="out"></div>
+</form>
+<div class="aviso"><strong>Orientativo, no es asesoramiento fiscal.</strong> Comprueba tu caso con una gestoría o con la Agencia Tributaria. No cubre IGIC (Canarias), IPSI (Ceuta y Melilla), recargo de equivalencia ni otros regímenes especiales. Los importes se redondean al céntimo (la mitad se redondea hacia arriba). Última revisión de los tipos: 19-11-2026.</div>
+<h2>Cómo se calcula</h2>
+<ul>
+<li><strong>IVA</strong> = base × tipo de IVA.</li>
+<li><strong>Total de la factura</strong> = base + IVA.</li>
+<li><strong>Retención de IRPF</strong> = base × tipo de retención (sobre la base, sin IVA).</li>
+<li><strong>Total a cobrar</strong> = base + IVA − retención.</li>
+</ul>
+<h2>Los tipos que usa</h2>
+<ul>
+<li><strong>IVA:</strong> 21 % general, 10 % reducido y 4 % superreducido, según la Ley 37/1992 del IVA (BOE). La web de la Agencia Tributaria no estaba accesible el 19-11-2026 al revisarlo; comprueba que tu servicio no tiene otro tipo.</li>
+<li><strong>Retención de profesionales:</strong> 15 % como tipo general (art. 101.5 de la Ley del IRPF).</li>
+<li><strong>7 % al inicio:</strong> el artículo 95.1 del Reglamento del IRPF lo prevé para el período de inicio de la actividad y los dos siguientes, siempre que no se hubiera ejercido actividad profesional en el año anterior al inicio. Se aplica comunicándolo al pagador. Fuente consultada: <a href="https://www.supercontable.com/informacion/impuesto_renta_IRPF/Articulo_95__Real_Decreto_439-2007-_de_30_de_marzo-_.html">texto del artículo 95</a> (fuente secundaria, 19-11-2026; verifícalo en el BOE o en la Agencia Tributaria).</li>
+<li><strong>19 %:</strong> tipo habitual de retención en arrendamientos de inmuebles urbanos y otros rendimientos de capital; úsalo solo si tu caso lo requiere.</li>
+</ul>
+<h2>Preguntas frecuentes</h2>
+<details><summary>¿Qué retención de IRPF se aplica en una factura de autónomo?</summary><p>El tipo general para actividades profesionales es del 15 %. Quien inicia actividad puede aplicar el 7 % en el año de inicio y en los dos siguientes si no ejerció actividad profesional en el año anterior y lo comunica al pagador. Hay actividades (por ejemplo, algunas de empresarios) con otras reglas.</p></details>
+<details><summary>¿La retención se calcula sobre la base o sobre el total con IVA?</summary><p>Sobre la base imponible, sin incluir el IVA.</p></details>
+<details><summary>¿Guardáis los datos que escribo?</summary><p>No. Los cálculos se hacen en tu navegador y no se envían ni se almacenan.</p></details>
+<details><summary>¿Puedo usarlo si mi cliente es particular?</summary><p>A particulares normalmente no se les aplica retención: elige 0 %. Consulta tu caso con tu gestoría.</p></details>
+<p>¿Necesitas una web o ayuda con tu negocio? <a class="cta" href="https://wa.me/34745060067?text=Hola%2C%20vengo%20de%20la%20calculadora%20de%20factura">Escríbeme por WhatsApp</a></p>
+</main>
+<footer>© 2026 Sebastián Manilow · Manilow Web · Navalafuente (Madrid) · <a href="https://sebastian-manilow.github.io/">Inicio</a></footer>
+</div>
+<script>
+//LOGIC-START
+(function (root) {
+  // Convierte un texto en céntimos enteros. Devuelve null si no es válido.
+  function toCents(texto) {
+    if (typeof texto === "number") texto = String(texto);
+    if (typeof texto !== "string") return null;
+    var s = texto.replace(/[\s€]/g, "");
+    if (!/^-?[0-9.,]+$/.test(s) || !/[0-9]/.test(s)) return null;
+    var neg = s.charAt(0) === "-";
+    if (neg) s = s.slice(1);
+    var dots = (s.match(/\./g) || []).length, commas = (s.match(/,/g) || []).length;
+    var entera, dec = "";
+    if (dots && commas) {
+      var sep = Math.max(s.lastIndexOf("."), s.lastIndexOf(","));
+      var otro = s.charAt(sep) === "," ? "." : ",";
+      if (s.split(s.charAt(sep)).length > 2) return null;
+      entera = s.slice(0, sep).split(otro).join(""); dec = s.slice(sep + 1);
+    } else if (commas) {
+      if (commas > 1) { entera = s.split(",").join(""); }
+      else { var i = s.indexOf(","); entera = s.slice(0, i); dec = s.slice(i + 1); }
+    } else if (dots) {
+      var p = s.split(".");
+      var milesTipico = dots > 1 || (p[1].length === 3 && p[0].length >= 1 && p[0].length <= 3 && p[0].charAt(0) !== "0");
+      if (milesTipico) { entera = p.join(""); }
+      else { entera = p[0]; dec = p[1]; }
+    } else { entera = s; }
+    if (!/^[0-9]*$/.test(entera) || !/^[0-9]*$/.test(dec)) return null;
+    if (entera === "" && dec === "") return null;
+    var c = parseInt(entera || "0", 10) * 100 + parseInt((dec + "00").slice(0, 2), 10);
+    if (dec.length > 2 && dec.charAt(2) >= "5") c += 1;
+    if (!isFinite(c) || c > Number.MAX_SAFE_INTEGER / 1000) return null;
+    return neg ? -c : c;
+  }
+  // c * p / 100, redondeando la mitad hacia arriba en valor absoluto.
+  function pct(c, p) {
+    var n = c * p, q = Math.trunc(n / 100), r = Math.abs(n % 100);
+    return q + (r >= 50 ? (n < 0 ? -1 : 1) : 0);
+  }
+  // c * 100 / d con el mismo redondeo.
+  function divPct(c, d) {
+    var n = c * 100, q = Math.trunc(n / d), r = Math.abs(n % d);
+    return q + (2 * r >= d ? (n < 0 ? -1 : 1) : 0);
+  }
+  function calcular(importe, modo, iva, irpf) {
+    var c = toCents(importe);
+    if (c === null) return null;
+    var base = modo === "total" ? divPct(c, 100 + iva) : c;
+    var cuotaIva = modo === "total" ? c - base : pct(base, iva);
+    var ret = pct(base, irpf);
+    return { base: base, iva: cuotaIva, totalFactura: base + cuotaIva, retencion: ret, aCobrar: base + cuotaIva - ret };
+  }
+  function euros(c) {
+    var neg = c < 0, a = Math.abs(c), e = Math.floor(a / 100), d = a % 100;
+    var es = String(e).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return (neg ? "-" : "") + es + "," + (d < 10 ? "0" : "") + d + " €";
+  }
+  root.CALC = { toCents: toCents, pct: pct, divPct: divPct, calcular: calcular, euros: euros };
+})(typeof globalThis !== "undefined" ? globalThis : this);
+//LOGIC-END
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var out = $("out");
+  function pintar() {
+    var r = CALC.calcular($("importe").value, $("modo").value, parseInt($("iva").value, 10), parseInt($("irpf").value, 10));
+    if (!r) { out.innerHTML = '<p class="err">Escribe un importe válido, por ejemplo 1234,56.</p>'; return; }
+    var f = function (l, v, cls) { return "<tr" + (cls ? ' class="' + cls + '"' : "") + "><td>" + l + "</td><td>" + CALC.euros(v) + "</td></tr>"; };
+    out.innerHTML = "<table><tbody>" + f("Base imponible", r.base) + f("IVA (" + $("iva").value + " %)", r.iva) + f("Total de la factura", r.totalFactura) +
+      f("Retención de IRPF (" + $("irpf").value + " %)", -r.retencion) + f("Total a cobrar", r.aCobrar, "total") + "</tbody></table>";
+  }
+  ["importe", "modo", "iva", "irpf"].forEach(function (id) { $(id).addEventListener("input", pintar); $(id).addEventListener("change", pintar); });
+  $("f").addEventListener("submit", function (e) { e.preventDefault(); pintar(); });
+  pintar();
+})();
+</script>
+</body></html>
