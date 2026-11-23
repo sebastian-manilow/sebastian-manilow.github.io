@@ -348,6 +348,40 @@ header.top{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 @media (max-width:900px){.deco{display:none}#neural{opacity:.08}}
 @media (prefers-reduced-motion:reduce){#neural{opacity:.07}}
 </style>
+<style id="tema-rico">
+/* Tema rico: 3 colores por paleta (acento + secundario + degradado), cambio animado y fondos distintos por sección */
+@property --h{syntax:"<number>";inherits:true;initial-value:218}
+@property --s{syntax:"<number>";inherits:true;initial-value:85}
+:root{transition:--h .7s ease,--s .7s ease;
+  --n:calc(var(--s)*.85%);
+  --line:hsl(var(--h) calc(var(--s)*.55%) 24%);--line-2:hsl(var(--h) calc(var(--s)*.5%) 36%);
+  --acc:hsl(calc(var(--h) + 42) calc(var(--s)*.85%) 76%);
+  --acc2:hsl(calc(var(--h) - 52) calc(var(--s)*.9%) 72%);
+  --grad:linear-gradient(120deg,var(--amber),var(--acc) 55%,var(--acc2))}
+body{background:radial-gradient(900px 520px at 85% 0%,color-mix(in srgb,var(--amber) 16%,transparent),transparent),radial-gradient(800px 600px at 0% 45%,color-mix(in srgb,var(--acc2) 12%,transparent),transparent),radial-gradient(900px 600px at 100% 85%,color-mix(in srgb,var(--acc) 11%,transparent),transparent),var(--bg)}
+.hero h1 em{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.btn:not(.ghost){background:var(--grad);color:var(--on)}
+.btn:not(.ghost):hover{background:var(--grad);filter:brightness(1.12)}
+.brand b{border-color:var(--acc)}
+.eyebrow::before{background:var(--grad)}
+.stat b,.total b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card .ico{border-color:var(--acc2);color:var(--acc)}
+.card:hover,.opt:hover,.tab:hover{border-color:var(--acc)}
+.tab[aria-selected="true"]{background:var(--grad);color:var(--on);border-color:transparent}
+.facts li::before{background:var(--acc2);box-shadow:0 0 12px var(--acc2)}
+.sw{box-shadow:0 0 0 1px #0006}
+.deco svg{color:var(--amber)}
+/* fondos por sección (cada una con el suyo, nada fijo al scroll) */
+.grid{display:none}
+main section{position:relative}
+main section::before,main section::after{content:"";position:absolute;top:0;bottom:0;left:calc(50% - 50vw);right:calc(50% - 50vw);pointer-events:none;z-index:-1}
+main section::after{display:none}
+.s-clean::before{background:linear-gradient(180deg,var(--bg),color-mix(in srgb,var(--surf) 75%,var(--bg)))}
+.s-net::before{background:none}
+.s-glass::before{background:linear-gradient(135deg,color-mix(in srgb,var(--acc) 8%,transparent),color-mix(in srgb,var(--acc2) 7%,transparent));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-block:1px solid color-mix(in srgb,var(--fg) 8%,transparent)}
+.s-grid::after{display:block;background-image:linear-gradient(color-mix(in srgb,var(--amber) 9%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--amber) 9%,transparent) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:linear-gradient(180deg,transparent,#000 18%,#000 82%,transparent);mask-image:linear-gradient(180deg,transparent,#000 18%,#000 82%,transparent)}
+html{overflow-x:clip}
+</style>
 </head>
 <body>
 <div class="prog" id="prog"></div><div class="spot" aria-hidden="true"></div>
@@ -389,13 +423,13 @@ header.top{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
     </div>
   </div>
 
-  <section id="ejemplos" style="padding-top:8px">
+  <section class="s-clean" id="ejemplos" style="padding-top:8px">
     <div class="head"><span class="eyebrow">Mira cómo quedaría</span><h2>Elige tu tipo de negocio</h2><p class="mut">Ejemplos orientativos con datos inventados, para que veas la estructura.</p></div>
     <div class="tabs" role="tablist" id="tabs"></div>
   </section>
 
   
-  <section id="datos" style="padding-top:8px">
+  <section class="s-glass" id="datos" style="padding-top:8px">
     <div class="head"><span class="eyebrow">En cifras</span><h2>Lo que te llevas</h2></div>
     <div class="stats">
       <div class="stat"><b data-n="250" data-s=" €">250 €</b><span>Web completa desde</span></div>
@@ -407,8 +441,8 @@ header.top{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 
 
 
-  <section id="automatizacion"><div class="head"><span class="eyebrow">Automatización con IA</span><h2>Un asistente con IA que atiende a tus clientes 24 h</h2><p class="mut">Un asistente que atiende a tus clientes mientras tú trabajas. Sin que tengas que aprender nada.</p></div><div class="services"><article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.2A8 8 0 1 1 21 12z"/></svg></div><h3>Atiende por WhatsApp 24 h</h3><p>Responde dudas y da citas por WhatsApp a cualquier hora, también de noche y en festivos.</p></article><article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg></div><h3>Confirma y recuerda citas</h3><p>Avisa a tus clientes antes de la cita para que no se les olvide y se acaben los plantones.</p></article><article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg></div><h3>Pide reseñas en Google</h3><p>Tras la visita, el asistente le pide una reseña al cliente y tu ficha de Google gana confianza.</p></article><article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></div><h3>Presupuestos y avisos</h3><p>Envía presupuestos al cliente y te avisa a ti en el móvil cuando hay algo importante.</p></article><article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h2v2h-2zM18 18h2v2h-2z"/></svg></div><h3>Carta digital con QR</h3><p>Carta con alérgenos y pedido por WhatsApp. <a href="/demo-menu-qr/">Ver demo</a></p></article><article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg></div><h3>Reservas de mesa</h3><p>Formulario con disponibilidad y aviso por WhatsApp. <a href="/demo-reservas-restaurante/">Ver demo</a></p></article><article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg></div><h3>Gestor de reseñas</h3><p>Reseña en Google si es buena; comentario privado si no. <a href="/demo-resenas/">Ver demo</a></p></article><article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg></div><h3>Citas para clínicas</h3><p>Tratamiento, profesional, hueco y recordatorio 24 h antes. <a href="/demo-citas-clinica/">Ver demo</a></p></article><article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg></div><h3>Presupuesto para talleres</h3><p>Total estimado con IVA y envío por WhatsApp. <a href="/demo-presupuesto-taller/">Ver demo</a></p></article><article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg></div><h3>Asistente de preguntas frecuentes</h3><p>Responde por palabras clave y deriva a WhatsApp. <a href="/demo-faq-bot/">Ver demo</a></p></article></div><div class="plan pop" style="margin-top:20px"><div><h3>Precio orientativo</h3></div><div class="pr">desde 150 €<small>de montaje + 30-60 €/mes</small></div><p>Se adapta a tu negocio. Te doy el precio final tras la primera charla.</p></div><div class="cta"><a class="btn" href="/demo-automatizacion/">Ver demo en vivo</a><a class="btn ghost" href="/portfolio/">Ver todas las demos</a><a class="btn ghost" href="https://wa.me/34745060067?text=Hola%2C%20me%20interesa%20la%20automatizaci%C3%B3n%20con%20IA%20para%20mi%20negocio" target="_blank" rel="noopener">Consultar por WhatsApp</a></div><iframe src="/demo-automatizacion/" title="Demo de asistente de citas por WhatsApp para una peluquería" loading="lazy" style="width:100%;max-width:420px;height:420px;border:1px solid var(--line);border-radius:20px;margin-top:24px;background:transparent"></iframe><p style="margin-top:18px"><a class="btn" href="/demo-automatizacion/">Prueba el asistente en vivo</a> &nbsp; <a class="lnk" href="/asistente-faq/">Cómo funciona</a></p></section>
-  <section id="servicios">
+  <section class="s-net" id="automatizacion"><div class="head"><span class="eyebrow">Automatización con IA</span><h2>Un asistente con IA que atiende a tus clientes 24 h</h2><p class="mut">Un asistente que atiende a tus clientes mientras tú trabajas. Sin que tengas que aprender nada.</p></div><div class="services"><article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.2A8 8 0 1 1 21 12z"/></svg></div><h3>Atiende por WhatsApp 24 h</h3><p>Responde dudas y da citas por WhatsApp a cualquier hora, también de noche y en festivos.</p></article><article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg></div><h3>Confirma y recuerda citas</h3><p>Avisa a tus clientes antes de la cita para que no se les olvide y se acaben los plantones.</p></article><article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg></div><h3>Pide reseñas en Google</h3><p>Tras la visita, el asistente le pide una reseña al cliente y tu ficha de Google gana confianza.</p></article><article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></div><h3>Presupuestos y avisos</h3><p>Envía presupuestos al cliente y te avisa a ti en el móvil cuando hay algo importante.</p></article><article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h2v2h-2zM18 18h2v2h-2z"/></svg></div><h3>Carta digital con QR</h3><p>Carta con alérgenos y pedido por WhatsApp. <a href="/demo-menu-qr/">Ver demo</a></p></article><article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg></div><h3>Reservas de mesa</h3><p>Formulario con disponibilidad y aviso por WhatsApp. <a href="/demo-reservas-restaurante/">Ver demo</a></p></article><article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg></div><h3>Gestor de reseñas</h3><p>Reseña en Google si es buena; comentario privado si no. <a href="/demo-resenas/">Ver demo</a></p></article><article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg></div><h3>Citas para clínicas</h3><p>Tratamiento, profesional, hueco y recordatorio 24 h antes. <a href="/demo-citas-clinica/">Ver demo</a></p></article><article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg></div><h3>Presupuesto para talleres</h3><p>Total estimado con IVA y envío por WhatsApp. <a href="/demo-presupuesto-taller/">Ver demo</a></p></article><article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg></div><h3>Asistente de preguntas frecuentes</h3><p>Responde por palabras clave y deriva a WhatsApp. <a href="/demo-faq-bot/">Ver demo</a></p></article></div><div class="plan pop" style="margin-top:20px"><div><h3>Precio orientativo</h3></div><div class="pr">desde 150 €<small>de montaje + 30-60 €/mes</small></div><p>Se adapta a tu negocio. Te doy el precio final tras la primera charla.</p></div><div class="cta"><a class="btn" href="/demo-automatizacion/">Ver demo en vivo</a><a class="btn ghost" href="/portfolio/">Ver todas las demos</a><a class="btn ghost" href="https://wa.me/34745060067?text=Hola%2C%20me%20interesa%20la%20automatizaci%C3%B3n%20con%20IA%20para%20mi%20negocio" target="_blank" rel="noopener">Consultar por WhatsApp</a></div><iframe src="/demo-automatizacion/" title="Demo de asistente de citas por WhatsApp para una peluquería" loading="lazy" style="width:100%;max-width:420px;height:420px;border:1px solid var(--line);border-radius:20px;margin-top:24px;background:transparent"></iframe><p style="margin-top:18px"><a class="btn" href="/demo-automatizacion/">Prueba el asistente en vivo</a> &nbsp; <a class="lnk" href="/asistente-faq/">Cómo funciona</a></p></section>
+  <section class="s-clean s-grid" id="servicios">
     <div class="head"><span class="eyebrow">Qué hago</span><h2>Lo que puedo hacer por tu negocio</h2></div>
     <div class="services">
       <article class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 21h8"/></svg></div><h3>Web profesional</h3><p>Una página clara con tus servicios, horarios, mapa y botón directo a WhatsApp. Se ve bien en el móvil, que es desde donde te buscan.</p></article>
@@ -417,8 +451,8 @@ header.top{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
     </div>
   </section>
 
-  <section id="seo"><div class="head"><span class="eyebrow">SEO local</span><h2>Que te encuentren cuando buscan tu oficio</h2><p class="mut">Una web bonita sin visitas no sirve. Trabajo también que salgas en Google y en Maps.</p></div><div class="services"><article class="card"><h3>Ficha de Google Maps</h3><p>Ordenada, con horarios, fotos y servicios, para salir en el mapa de tu zona.</p></article><article class="card"><h3>Web preparada para buscadores</h3><p>Títulos, textos, velocidad y datos estructurados pensados para tu pueblo y tu oficio.</p></article><article class="card"><h3>Reseñas y seguimiento</h3><p>Cómo pedir reseñas y revisar cada mes qué búsquedas te traen llamadas.</p></article></div><p style="margin-top:18px"><a class="btn" href="/ficha-google/">Ver el servicio de Google</a></p></section>
-  <section>
+  <section class="s-glass" id="seo"><div class="head"><span class="eyebrow">SEO local</span><h2>Que te encuentren cuando buscan tu oficio</h2><p class="mut">Una web bonita sin visitas no sirve. Trabajo también que salgas en Google y en Maps.</p></div><div class="services"><article class="card"><h3>Ficha de Google Maps</h3><p>Ordenada, con horarios, fotos y servicios, para salir en el mapa de tu zona.</p></article><article class="card"><h3>Web preparada para buscadores</h3><p>Títulos, textos, velocidad y datos estructurados pensados para tu pueblo y tu oficio.</p></article><article class="card"><h3>Reseñas y seguimiento</h3><p>Cómo pedir reseñas y revisar cada mes qué búsquedas te traen llamadas.</p></article></div><p style="margin-top:18px"><a class="btn" href="/ficha-google/">Ver el servicio de Google</a></p></section>
+  <section class="s-clean">
     <div class="head"><span class="eyebrow">Cómo trabajamos</span><h2>De la primera charla a tu web en línea</h2></div>
     <div class="steps">
       <div class="step"><small>Paso 1</small><h3>Hablamos</h3><p>Me cuentas qué haces y qué quieres. Te hago una auditoría gratis de lo que tienes.</p></div>
@@ -428,8 +462,8 @@ header.top{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
     </div>
   </section>
 
-  <section id="sectores"><div class="head"><span class="eyebrow">Sectores y zonas</span><h2>Webs para tu tipo de negocio</h2></div><div class="tabs"><a class="tab" target="_blank" rel="noopener" style="text-decoration:none" href="web-taller-mecanico-madrid/">Web para taller mecánico en toda España</a><a class="tab" target="_blank" rel="noopener" style="text-decoration:none" href="web-bar-restaurante-sierra-norte/">Web para bar y restaurante en toda España</a><a class="tab" target="_blank" rel="noopener" style="text-decoration:none" href="web-clinica-fisioterapia-madrid/">Web para clínica y fisioterapia en toda España</a></div></section>
-  <section id="precios">
+  <section class="s-net" id="sectores"><div class="head"><span class="eyebrow">Sectores y zonas</span><h2>Webs para tu tipo de negocio</h2></div><div class="tabs"><a class="tab" target="_blank" rel="noopener" style="text-decoration:none" href="web-taller-mecanico-madrid/">Web para taller mecánico en toda España</a><a class="tab" target="_blank" rel="noopener" style="text-decoration:none" href="web-bar-restaurante-sierra-norte/">Web para bar y restaurante en toda España</a><a class="tab" target="_blank" rel="noopener" style="text-decoration:none" href="web-clinica-fisioterapia-madrid/">Web para clínica y fisioterapia en toda España</a></div></section>
+  <section class="s-glass s-grid" id="precios">
     <div class="head"><span class="eyebrow">Precios claros</span><h2>Sin letra pequeña</h2><p class="mut">Orientativos. Te doy el precio final tras la primera charla.</p></div>
     <div class="price-grid">
       <div class="plans">
@@ -451,7 +485,7 @@ header.top{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
     </div>
   </section>
 
-  <section>
+  <section class="s-clean">
     <div class="head"><h2>Preguntas frecuentes</h2></div>
     <details><summary>¿Cuánto tarda en estar lista mi web?</summary><p>Una web de una página suele estar publicada en una o dos semanas, según lo rápido que me pases fotos y textos.</p></details>
     <details><summary>¿Tengo que saber de informática?</summary><p>No. Me encargo de todo y te explico lo poco que necesites. Si prefieres no tocar nada, el mantenimiento lo hago yo.</p></details>
@@ -459,7 +493,7 @@ header.top{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
     <details><summary>¿Cómo se paga?</summary><p>Presupuesto cerrado antes de empezar. Puedes pagar la web en dos plazos y el mantenimiento mes a mes.</p></details>
   </section>
 
-  <section style="padding-top:20px">
+  <section class="s-net" style="padding-top:20px">
     <div class="contact">
       <span class="eyebrow">Hablemos</span>
       <h2>Escríbeme y te devuelvo una auditoría gratis</h2>
@@ -542,7 +576,7 @@ header.top{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
   document.querySelectorAll(".sw").forEach(function(x){x.remove()});
   function setTheme(h,s){root.style.setProperty("--h",h);root.style.setProperty("--s",s);document.querySelectorAll(".sw").forEach(function(x){x.setAttribute("aria-pressed",String(+x.dataset.h===h))})}
   var saved=null;try{saved=JSON.parse(localStorage.getItem("tema"))}catch(e){}
-  HUES.forEach(function(p){var b=document.createElement("button");b.className="sw";b.type="button";b.dataset.h=p[1];b.dataset.s=p[2];b.style.background="hsl("+p[1]+" "+p[2]+"% 72%)";b.setAttribute("aria-label",p[0]);b.title=p[0];b.setAttribute("aria-pressed","false");b.onclick=function(){setTheme(p[1],p[2]);try{localStorage.setItem("tema",JSON.stringify([p[1],p[2]]))}catch(e){}};swb.appendChild(b)});
+  HUES.forEach(function(p){var b=document.createElement("button");b.className="sw";b.type="button";b.dataset.h=p[1];b.dataset.s=p[2];b.style.background="linear-gradient(135deg,hsl("+p[1]+" "+p[2]+"% 74%),hsl("+(p[1]+42)+" "+p[2]+"% 66%) 55%,hsl("+(p[1]-52)+" "+p[2]+"% 62%))";b.setAttribute("aria-label",p[0]);b.title=p[0];b.setAttribute("aria-pressed","false");b.onclick=function(){setTheme(p[1],p[2]);try{localStorage.setItem("tema",JSON.stringify([p[1],p[2]]))}catch(e){}};swb.appendChild(b)});
   setTheme(saved&&isFinite(saved[0])?+saved[0]:218,saved&&isFinite(saved[1])?+saved[1]:85);
   function count(el){var to=+el.dataset.n,t0=performance.now();(function f(t){var k=Math.min(1,(t-t0)/1200);el.textContent=Math.round(to*(1-Math.pow(1-k,3)))+el.dataset.s;if(k<1)requestAnimationFrame(f)})(t0)}
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;e.target.classList.remove("pre");
@@ -599,7 +633,8 @@ var c=document.getElementById("neural");if(!c||!c.getContext)return;
 var x=c.getContext("2d"),W,H,N=[],raf=0,mq=matchMedia("(prefers-reduced-motion:reduce)"),small=matchMedia("(max-width:900px)");
 function size(){var d=Math.min(devicePixelRatio||1,1.5);W=innerWidth;H=innerHeight;c.width=W*d;c.height=H*d;x.setTransform(d,0,0,d,0,0);
  var n=small.matches?22:Math.round(Math.min(46,W*H/32000));N=[];for(var i=0;i<n;i++)N.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.12,vy:(Math.random()-.5)*.12});draw(0)}
-function draw(mv){var L=small.matches?120:150;x.clearRect(0,0,W,H);x.lineWidth=.7;x.strokeStyle="#bcd0ff";x.fillStyle="#bcd0ff";
+var pr=document.createElement("i");pr.style.cssText="position:absolute;visibility:hidden;color:var(--amber)";document.body.appendChild(pr);var col="#bcd0ff",fr=0;
+function draw(mv){if(!(fr++%30))col=getComputedStyle(pr).color;var L=small.matches?120:150;x.clearRect(0,0,W,H);x.lineWidth=.7;x.strokeStyle=col;x.fillStyle=col;
  for(var i=0;i<N.length;i++){var a=N[i];if(mv){a.x+=a.vx;a.y+=a.vy;if(a.x<0||a.x>W)a.vx*=-1;if(a.y<0||a.y>H)a.vy*=-1}
   for(var j=i+1;j<N.length;j++){var b=N[j],dx=a.x-b.x,dy=a.y-b.y,d=dx*dx+dy*dy;if(d<L*L){x.globalAlpha=(1-Math.sqrt(d)/L)*.8;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke()}}
   x.globalAlpha=.9;x.beginPath();x.arc(a.x,a.y,1.6,0,6.283);x.fill()}}
