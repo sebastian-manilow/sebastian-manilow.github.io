@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Demo asistente de citas por WhatsApp</title>
+<style>
+:root{--bg:#ece5dd;--me:#d9fdd3;--bot:#fff;--ink:#111;--hd:#075e54}
+@media(prefers-color-scheme:dark){:root{--bg:#0b141a;--me:#005c4b;--bot:#202c33;--ink:#e9edef;--hd:#202c33}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px system-ui,sans-serif;display:flex;justify-content:center}
+.app{width:100%;max-width:480px;height:100vh;display:flex;flex-direction:column}
+header{background:var(--hd);color:#fff;padding:12px 16px}header small{display:block;opacity:.8}
+#log{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:6px}
+.m{max-width:80%;padding:8px 12px;border-radius:10px;background:var(--bot);white-space:pre-line}
+.m.me{align-self:flex-end;background:var(--me)}
+.q{display:flex;flex-wrap:wrap;gap:6px;padding:8px 12px}
+.q button{border:1px solid #0a8;background:transparent;color:inherit;border-radius:16px;padding:6px 12px;cursor:pointer}
+form{display:flex;gap:6px;padding:8px 12px}input{flex:1;padding:10px;border-radius:20px;border:1px solid #888;background:var(--bot);color:var(--ink)}
+form button{border:0;background:#0a8;color:#fff;border-radius:20px;padding:0 16px}
+.note{font-size:12px;text-align:center;opacity:.7;padding:4px 12px 10px}
+</style></head><body><div class="app">
+<header><b>Peluquería Ejemplo</b><small>Asistente automático · responde 24 h</small></header>
+<div id="log"></div>
+<div class="q" id="q"></div>
+<form id="f"><input id="i" placeholder="Escribe un mensaje" autocomplete="off"><button>Enviar</button></form>
+<div class="note">Demo ficticia: así atendería tu negocio las citas por WhatsApp, también de madrugada.</div>
+</div>
+<script>
+const log=document.getElementById('log'),q=document.getElementById('q');
+const slots=['10:00','11:30','16:00','18:30'];let st={};
+function add(t,me){const d=document.createElement('div');d.className='m'+(me?' me':'');d.textContent=t;log.appendChild(d);log.scrollTop=1e9}
+function opts(a){q.innerHTML='';a.forEach(x=>{const b=document.createElement('button');b.textContent=x;b.onclick=()=>say(x);q.appendChild(b)})}
+function bot(t,o){setTimeout(()=>{add(t);opts(o||['Pedir cita','Precios','Horario'])},400)}
+function say(t){add(t,true);const s=t.toLowerCase();
+ if(st.step==='hora'&&slots.includes(t)){st.hora=t;st.step='nombre';return bot('Perfecto, '+st.dia+' a las '+t+'. ¿A nombre de quién?',[])}
+ if(st.step==='nombre'){const n=t;st={};return bot('Cita confirmada para '+n+'. Te llegará un recordatorio el día antes. Si necesitas cambiarla, escríbeme aquí.\n(El dueño recibe el aviso en su móvil.)')}
+ if(/cita|reserv|hora/.test(s)){st={step:'dia'};return bot('¡Claro! ¿Para qué día?',['Mañana','Viernes','Sábado'])}
+ if(st.step==='dia'){st.dia=t;st.step='hora';return bot('Para '+t+' tengo libre:',slots)}
+ if(/precio|cuesta|tarifa/.test(s))return bot('Corte mujer 22 €\nCorte hombre 12 €\nTinte desde 35 €\nBarba 8 €');
+ if(/horario|abr|cierr/.test(s))return bot('Lunes a sábado de 9:30 a 20:00. Domingo cerrado.');
+ bot('Puedo ayudarte con citas, precios y horario. Si es otra cosa, aviso al equipo y te contestan en cuanto abran.')}
+document.getElementById('f').onsubmit=e=>{e.preventDefault();const v=i.value.trim();if(v){i.value='';say(v)}};
+bot('¡Hola! Soy el asistente de Peluquería Ejemplo. ¿En qué te ayudo?');
+</script></body></html>
