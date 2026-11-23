@@ -332,12 +332,37 @@ header.top{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .site[data-k=clinica] .s-btn{border-radius:10px}
 .site[data-k=clinica] .s-cards div{border-radius:14px;border-top:3px solid #0f8f83}
 </style>
+<style id="fondo-ia">
+/* Fondo IA translúcido: red neuronal muy tenue, cristal en tarjetas, iconos sueltos. Solo decorativo. */
+#neural{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.11}
+.deco{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.deco svg{position:absolute;width:64px;height:64px;color:#bcd0ff;opacity:.09;fill:none;stroke:currentColor;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
+.deco .d1{left:2.5vw;top:96px;transform:rotate(-8deg)}
+.deco .d2{right:3vw;top:150px;width:54px;height:54px;transform:rotate(6deg)}
+.deco .d3{left:1.5vw;top:46vh;width:58px;height:58px}
+.deco .d4{right:2vw;top:58vh;transform:rotate(-5deg)}
+.deco .d5{left:3vw;bottom:9vh;width:52px;height:52px;transform:rotate(7deg)}
+.plan,.calc,.stat,.quiz,.steps,.faq details,details,.price{background:linear-gradient(160deg,color-mix(in srgb,var(--surf) 62%,transparent),color-mix(in srgb,var(--surf) 38%,transparent));-webkit-backdrop-filter:blur(10px) saturate(115%);backdrop-filter:blur(10px) saturate(115%);border-color:color-mix(in srgb,var(--fg) 9%,transparent);box-shadow:inset 0 1px 0 color-mix(in srgb,var(--fg) 6%,transparent)}
+.plan.pop{background:linear-gradient(160deg,#d7e4ff14,color-mix(in srgb,var(--surf) 40%,transparent))}
+.eyebrow,.facts,.tab,.step small,.note,.stat span,.plan .pr small,.lnk,.bar span{font-family:var(--mono)}
+@media (max-width:900px){.deco{display:none}#neural{opacity:.08}}
+@media (prefers-reduced-motion:reduce){#neural{opacity:.07}}
+</style>
 </head>
 <body>
 <div class="prog" id="prog"></div><div class="spot" aria-hidden="true"></div>
 <a class="wa" aria-label="Escribeme por WhatsApp" href="https://wa.me/34745060067?text=Hola%2C%20quiero%20una%20auditor%C3%ADa%20gratis%20de%20mi%20web" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1.1.1-1.8-.1a14 14 0 0 1-5.3-3.3 6 6 0 0 1-1.4-2.7c-.1-.8.4-1.6 1-1.8.3-.1.6 0 .8.4l.7 1.5c.1.3.1.5-.1.7l-.4.5c.4.8 1 1.5 1.8 1.9.5.3.9.5 1.2.4l.6-.7c.2-.2.4-.2.7-.1l1.6.8c.3.1.4.4.3.8z"/></svg></a>
 <div class="glow" aria-hidden="true"><i></i><i></i></div>
 <div class="grid" aria-hidden="true"></div>
+<canvas id="neural" aria-hidden="true"></canvas>
+<div class="deco" aria-hidden="true">
+<svg class="d1" viewBox="0 0 48 48"><rect x="13" y="13" width="22" height="22" rx="3"/><rect x="19" y="19" width="10" height="10" rx="1.5"/><path d="M18 13V7M24 13V7M30 13V7M18 41v-6M24 41v-6M30 41v-6M13 18H7M13 24H7M13 30H7M41 18h-6M41 24h-6M41 30h-6"/></svg>
+<svg class="d2" viewBox="0 0 48 48"><path d="M17 8c-5 0-6 3-6 7v4c0 3-2 5-5 5 3 0 5 2 5 5v4c0 4 1 7 6 7M31 8c5 0 6 3 6 7v4c0 3 2 5 5 5-3 0-5 2-5 5v4c0 4-1 7-6 7"/></svg>
+<svg class="d3" viewBox="0 0 48 48"><path d="M9 7l10 31 4-12 12-4z"/><path d="M26 28l9 9"/></svg>
+<svg class="d4" viewBox="0 0 48 48"><path d="M4 24c6-9 13-13 20-13s14 4 20 13c-6 9-13 13-20 13S10 33 4 24z"/><circle cx="24" cy="24" r="6"/><circle cx="24" cy="24" r="1.5"/></svg>
+<svg class="d5" viewBox="0 0 48 48"><rect x="7" y="7" width="34" height="34" rx="3"/><path d="M7 19h34M7 30h34M19 7v34M30 7v34"/></svg>
+</div>
+
 
 <header class="wrap top">
   <a class="brand" href="#inicio"><b>M</b> Manilow Web</a>
@@ -566,6 +591,23 @@ u.addEventListener("click",function(){window.scrollTo({top:0,behavior:window.mat
 var t=0,x=0,y=0,tg=null;
 addEventListener("pointermove",function(e){x=e.clientX;y=e.clientY;tg=e.target;if(t)return;t=requestAnimationFrame(function(){t=0;
 var c=tg&&tg.closest&&tg.closest(".card");if(c){var b=c.getBoundingClientRect();c.style.setProperty("--cx",(x-b.left)+"px");c.style.setProperty("--cy",(y-b.top)+"px")}})},{passive:true});
+})();
+</script>
+<script id="fondo-ia-js">
+(function(){
+var c=document.getElementById("neural");if(!c||!c.getContext)return;
+var x=c.getContext("2d"),W,H,N=[],raf=0,mq=matchMedia("(prefers-reduced-motion:reduce)"),small=matchMedia("(max-width:900px)");
+function size(){var d=Math.min(devicePixelRatio||1,1.5);W=innerWidth;H=innerHeight;c.width=W*d;c.height=H*d;x.setTransform(d,0,0,d,0,0);
+ var n=small.matches?22:Math.round(Math.min(46,W*H/32000));N=[];for(var i=0;i<n;i++)N.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.12,vy:(Math.random()-.5)*.12});draw(0)}
+function draw(mv){var L=small.matches?120:150;x.clearRect(0,0,W,H);x.lineWidth=.7;x.strokeStyle="#bcd0ff";x.fillStyle="#bcd0ff";
+ for(var i=0;i<N.length;i++){var a=N[i];if(mv){a.x+=a.vx;a.y+=a.vy;if(a.x<0||a.x>W)a.vx*=-1;if(a.y<0||a.y>H)a.vy*=-1}
+  for(var j=i+1;j<N.length;j++){var b=N[j],dx=a.x-b.x,dy=a.y-b.y,d=dx*dx+dy*dy;if(d<L*L){x.globalAlpha=(1-Math.sqrt(d)/L)*.8;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke()}}
+  x.globalAlpha=.9;x.beginPath();x.arc(a.x,a.y,1.6,0,6.283);x.fill()}}
+function loop(){draw(1);raf=requestAnimationFrame(loop)}
+function go(){cancelAnimationFrame(raf);if(!mq.matches&&!document.hidden)raf=requestAnimationFrame(loop)}
+var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(function(){size();go()},200)});
+document.addEventListener("visibilitychange",go);if(mq.addEventListener)mq.addEventListener("change",go);
+size();go();
 })();
 </script>
 </body>
