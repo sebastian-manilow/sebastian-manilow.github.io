@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Asistente de preguntas frecuentes · Sebastián Manilow</title>
+<meta name="description" content="Asistente de preguntas frecuentes para la web o WhatsApp de tu negocio. Desde 150 € + 30 €/mes. Prepara tus respuestas aquí.">
+<link rel="icon" href="/favicon.svg">
+<style>
+:root{--h:218;--s:85;--sa:calc(var(--s)*1%);--bg:hsl(var(--h) 30% 98%);--card:#fff;--fg:hsl(var(--h) 30% 12%);--mut:hsl(var(--h) 12% 40%);--line:hsl(var(--h) 25% 86%);--acc:hsl(var(--h) var(--sa) 40%);--on:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,"Segoe UI",sans-serif;padding:0 16px}
+.w{max-width:900px;margin:0 auto;padding:32px 0}h1{font-size:clamp(1.8rem,5vw,2.6rem);line-height:1.1;margin:0 0 8px}h2{margin:36px 0 10px}
+.lead,.note{color:var(--mut)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:10px 0}
+.btn{display:inline-block;background:var(--acc);color:var(--on);text-decoration:none;padding:9px 16px;border-radius:8px;border:0;font:inherit;font-weight:600;cursor:pointer}
+.btn.o{background:transparent;color:var(--acc);border:1px solid var(--acc)}
+label{display:block;font-weight:600;margin:10px 0 4px}input,textarea{width:100%;padding:9px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff;color:#111}
+textarea{min-height:64px}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:600px){.row{grid-template-columns:1fr}}
+table{border-collapse:collapse;width:100%}td,th{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+pre{background:#0d1b2a;color:#e6edf3;padding:12px;border-radius:8px;overflow:auto;max-height:340px}
+footer{border-top:1px solid var(--line);padding:20px 0;color:var(--mut);font-size:.9rem}footer a{color:var(--mut)}
+@media print{body{background:#fff}.btn{border:1px solid var(--acc);background:#fff;color:var(--acc)}}
+</style></head><body><div class="w">
+<h1>Asistente de preguntas frecuentes para tu web o WhatsApp</h1>
+<p class="lead">Sebastián Manilow, programador de Navalafuente (Madrid). Responde a lo que te preguntan una y otra vez (horarios, precios, cómo llegar) y pasa a una persona lo que no sabe.</p>
+<p><a class="btn" href="/demo-faq-bot/">Probar la demo</a> <a class="btn o" href="https://wa.me/34745060067?text=Hola%2C%20me%20interesa%20el%20asistente%20de%20preguntas%20frecuentes">Escríbeme por WhatsApp</a></p>
+<p class="note">La demo es ficticia. No prometo más ventas: ahorra tiempo en consultas repetidas.</p>
+
+<h2>Qué hace y qué no</h2>
+<div class="card"><ul>
+<li>Responde por palabras clave con textos escritos por ti: horarios, precios, ubicación, pagos, servicios.</li>
+<li>Avisa siempre de que es un asistente automático y ofrece hablar con una persona por WhatsApp.</li>
+<li>Cita simple: recoge día, hora y nombre y te lo envía para que confirmes tú. No gestiona agenda real.</li>
+<li>No es una persona, no hace pagos y no da consejo médico, legal ni financiero. Lo que no sabe, lo deriva.</li>
+<li>Un chatbot dentro del propio número de WhatsApp requiere la API oficial de WhatsApp, con coste aparte del proveedor.</li></ul></div>
+
+<h2>Sin IA generativa o con IA</h2>
+<table><tr><th></th><th>Sin IA (recomendado para empezar)</th><th>Con IA</th></tr>
+<tr><td>Respuestas</td><td>Las que tú escribes; predecibles</td><td>Más flexibles; puede equivocarse, se limita a tu contenido</td></tr>
+<tr><td>Coste de uso</td><td>Ninguno</td><td>Pago por uso del proveedor, con tope mensual acordado</td></tr>
+<tr><td>Privacidad</td><td>No envía datos a terceros, sin cookies</td><td>Los mensajes pasan por un proveedor externo; se informa y no se piden datos sensibles</td></tr></table>
+<p class="note">En ambos casos el asistente se presenta como automático (transparencia que exige el Reglamento de IA de la UE) y, si guarda datos, se firma el encargo de tratamiento conforme al RGPD.</p>
+
+<h2>Precios</h2>
+<ul><li>Básico sin IA (hasta 25 preguntas, derivación a WhatsApp): <b>150 €</b> + 30 €/mes.</li><li>Con horarios y cita simple: <b>200-250 €</b> + 40 €/mes.</li><li>Con IA: <b>300 €</b> + 60 €/mes + uso del proveedor.</li></ul>
+<p class="note">Sin IVA salvo indicación. Mantenimiento: hasta 5 cambios al mes, sin permanencia. Alcance cerrado por escrito antes de empezar.</p>
+
+<h2>Prepara las respuestas de tu negocio</h2>
+<p class="lead">Rellena lo que quieras y se genera el JSON que usaría el asistente. Todo ocurre en tu navegador: no se envía ni se guarda nada.</p>
+<div class="card">
+<div class="row"><div><label for="nom">Nombre del negocio</label><input id="nom"></div><div><label for="tel">WhatsApp de atención</label><input id="tel" placeholder="34600000000"></div></div>
+<label for="hor">Horario</label><textarea id="hor" placeholder="Lunes a viernes 9:00-14:00 y 16:00-20:00"></textarea>
+<label for="dir">Dirección y cómo llegar</label><textarea id="dir"></textarea>
+<label for="pag">Formas de pago</label><input id="pag" placeholder="Efectivo, tarjeta, Bizum">
+<label for="pre">Precios o rangos</label><textarea id="pre"></textarea>
+<label for="can">Cancelaciones y cambios</label><textarea id="can"></textarea>
+<h3>Otras preguntas frecuentes</h3>
+<div id="lista"></div>
+<p><button class="btn o" type="button" id="add">Añadir pregunta</button></p>
+</div>
+<p><button class="btn" type="button" id="gen">Generar JSON</button> <button class="btn o" type="button" id="cop">Copiar</button> <button class="btn o" type="button" id="des">Descargar</button></p>
+<pre id="out">{}</pre>
+<p class="note">Puedes enviarme este JSON por WhatsApp y lo reviso con el cuestionario completo de 25 preguntas. No incluyas datos personales de clientes.</p>
+
+<p><a class="btn" href="https://wa.me/34745060067?text=Hola%2C%20quiero%20un%20asistente%20de%20preguntas%20frecuentes">Hablamos por WhatsApp</a></p>
+<footer>© Sebastián Manilow · Madrid · <a href="/aviso-legal.html">Aviso legal</a> · <a href="/privacidad.html">Privacidad</a> · <a href="/cookies.html">Cookies</a></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id),L=$('lista');
+function fila(){const d=document.createElement('div');d.className='card';d.innerHTML='<label>Pregunta</label><input class="p"><label>Palabras clave (separadas por comas)</label><input class="k"><label>Respuesta</label><textarea class="r"></textarea>';L.appendChild(d)}
+$('add').onclick=fila;fila();
+function build(){const f=[];
+ [['horario','horario, abierto, abren, cierran, hora',$('hor').value,'¿Cuál es el horario?'],
+  ['ubicacion','dónde, dirección, llegar, ubicación, aparcar',$('dir').value,'¿Dónde estáis?'],
+  ['pago','pago, pagar, tarjeta, bizum, efectivo',$('pag').value,'¿Cómo puedo pagar?'],
+  ['precios','precio, cuesta, tarifa, cuánto',$('pre').value,'¿Qué precios tenéis?'],
+  ['cancelacion','cancelar, cambiar, anular',$('can').value,'¿Puedo cancelar o cambiar?']
+ ].forEach(a=>{if(a[2].trim())f.push({id:a[0],pregunta:a[3],palabras_clave:a[1].split(',').map(s=>s.trim()),respuesta:a[2].trim()})});
+ L.querySelectorAll('.card').forEach((c,i)=>{const p=c.querySelector('.p').value.trim(),r=c.querySelector('.r').value.trim();if(p&&r)f.push({id:'extra'+(i+1),pregunta:p,palabras_clave:c.querySelector('.k').value.split(',').map(s=>s.trim()).filter(Boolean),respuesta:r})});
+ return JSON.stringify({negocio:$('nom').value.trim(),whatsapp:$('tel').value.replace(/\D/g,''),aviso:'Soy un asistente automático, no una persona. Para hablar con alguien, escríbenos por WhatsApp.',sin_respuesta:'No tengo esa información; te paso con una persona por WhatsApp.',faq:f},null,2)}
+$('gen').onclick=()=>{$('out').textContent=build()};
+$('cop').onclick=()=>{const t=build();$('out').textContent=t;if(navigator.clipboard)navigator.clipboard.writeText(t).catch(()=>{})};
+$('des').onclick=()=>{const t=build();$('out').textContent=t;const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'application/json'}));a.download='faq-negocio.json';a.click()};
+</script></body></html>
