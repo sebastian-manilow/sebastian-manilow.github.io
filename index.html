@@ -22,11 +22,11 @@
 <style>
 /* Concepto: taller digital de noche. Fondo tinta oscuro, una sola luz ámbar, maqueta de navegador viva como protagonista. */
 :root{
-  --h:218;--s:85;--sa:calc(var(--s)*1%);--n:calc(var(--s)*.3%);
-  --bg:hsl(var(--h) var(--n) 4%);--surf:hsl(var(--h) var(--n) 7%);--surf2:hsl(var(--h) var(--n) 10%);--line:hsl(var(--h) calc(var(--s)*.22%) 15%);--line-2:hsl(var(--h) calc(var(--s)*.2%) 25%);
+  --h:218;--s:85;--sa:calc(var(--s)*1%);--n:calc(var(--s)*.5%);
+  --bg:hsl(var(--h) var(--n) 6%);--surf:hsl(var(--h) var(--n) 10%);--surf2:hsl(var(--h) var(--n) 14%);--line:hsl(var(--h) calc(var(--s)*.4%) 20%);--line-2:hsl(var(--h) calc(var(--s)*.35%) 31%);
   --fg:hsl(var(--h) 30% 96%);--mut:hsl(var(--h) 14% 67%);--amber:hsl(var(--h) var(--sa) 88%);--amber-d:hsl(var(--h) calc(var(--s)*.7%) 75%);--acc:hsl(calc(var(--h) + 42) calc(var(--s)*.75%) 80%);--ok:hsl(calc(var(--h) + 42) 70% 82%);
   --on:hsl(var(--h) 30% 5%);--shadow:hsl(var(--h) 40% 2% / .6);--shadow-lg:hsl(var(--h) 40% 2% / .8);--amber-a:color-mix(in srgb,var(--amber) 8%,transparent);
-  --g1:hsl(var(--h) calc(var(--s)*.3%) 15%);--g2:hsl(var(--h) calc(var(--s)*.3%) 9%);
+  --g1:hsl(var(--h) calc(var(--s)*.5%) 19%);--g2:hsl(var(--h) calc(var(--s)*.5%) 11%);
   --disp:"Unbounded","Segoe UI",system-ui,sans-serif; --body:"Manrope","Segoe UI",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
   color-scheme:dark;
 }
@@ -259,6 +259,10 @@ body{background:radial-gradient(1200px 600px at 80% -10%,color-mix(in srgb,var(-
 .card:hover{background:color-mix(in srgb,var(--amber) 5%,transparent)}
 .plan.pop{background:linear-gradient(180deg,color-mix(in srgb,var(--amber) 8%,transparent),transparent)}
 :root,body,.card,.btn,.sw{transition:background-color .35s ease,border-color .35s ease,color .35s ease}
+.btn,.site .s-btn,.ba .after .pill,.ba .lbl.r,.ba .handle,.ba .handle::after,.wa,.prog,.q-prog i{background:var(--amber)}
+.btn:hover{background:var(--amber-d);box-shadow:0 0 0 6px color-mix(in srgb,var(--amber) 12%,transparent),0 14px 40px var(--shadow)}
+.tab[aria-selected="true"]{background:var(--amber);border-color:var(--amber)}
+.btn.ghost{background:transparent}
 </style>
 
 </head>
