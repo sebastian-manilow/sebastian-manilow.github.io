@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Demo presupuesto para taller mecánico</title><meta name="description" content="Demo ficticia: presupuesto orientativo de taller con IVA y envío por WhatsApp.">
+<style>
+:root{--h:218;--s:85;--bg:hsl(var(--h) calc(var(--s)*.5%) 6%);--surf:hsl(var(--h) calc(var(--s)*.5%) 11%);--line:hsl(var(--h) calc(var(--s)*.4%) 22%);--fg:hsl(var(--h) 30% 96%);--mut:hsl(var(--h) 14% 67%);--acc:hsl(calc(var(--h) + 42) calc(var(--s)*.75%) 70%);--on:hsl(var(--h) 30% 5%)}
+@media(prefers-color-scheme:light){:root{--bg:hsl(var(--h) 30% 97%);--surf:#fff;--line:hsl(var(--h) 20% 82%);--fg:hsl(var(--h) 40% 10%);--mut:hsl(var(--h) 12% 38%);--acc:hsl(calc(var(--h) + 42) 60% 32%);--on:#fff}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,sans-serif}
+main{max-width:640px;margin:0 auto;padding:20px 16px}h1{font-size:1.5rem;margin:0 0 4px}.mut{color:var(--mut)}
+.card{background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0}
+button,.btn{background:var(--acc);color:var(--on);border:0;border-radius:10px;padding:10px 16px;font:inherit;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block}
+button.g{background:transparent;color:var(--fg);border:1px solid var(--line)}button.on{outline:2px solid var(--acc)}
+input,select,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font:inherit}
+label{display:block;margin:10px 0 4px;font-size:.9rem}.row{display:flex;gap:8px;flex-wrap:wrap}.row>*{flex:1}
+.tag{font-size:.75rem;border:1px solid var(--line);border-radius:99px;padding:1px 8px;color:var(--mut);margin-right:4px}
+footer{text-align:center;color:var(--mut);font-size:.8rem;padding:20px 16px}footer a{color:inherit}a{color:var(--acc)}
+.ok{color:var(--acc);font-weight:600}pre{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px;font-size:.85rem}.sl button{padding:8px 12px}.msg{padding:8px 12px;border-radius:12px;margin:6px 0;max-width:90%}.me{background:var(--acc);color:var(--on);margin-left:auto}.bot{background:var(--surf);border:1px solid var(--line)}button:disabled{opacity:.35;cursor:not-allowed}</style></head><body><main><h1>Presupuesto · Taller Ejemplo</h1><p class="mut">Demo ficticia: precio orientativo, sujeto a revisión del vehículo.</p>
+<div class="card"><label for="sv">Servicio</label><select id="sv"></select><label for="ve">Vehículo</label><select id="ve"></select><label>Extras</label><div id="ex"></div></div>
+<div class="card"><div>Base imponible: <b id="bi"></b></div><div>IVA 21 %: <b id="iv"></b></div><div style="font-size:1.3rem">Total estimado: <b class="ok" id="to"></b></div><p class="mut">Estimación orientativa, no vinculante.</p><a class="btn" id="wa" target="_blank" rel="noopener">Pedir cita por WhatsApp</a></div></main>
+<footer>Demo ficticia · <a href="/aviso-legal.html">Aviso legal</a> · <a href="/privacidad.html">Privacidad</a> · <a href="/cookies.html">Cookies</a><br><a href="/#automatizacion">&larr; Volver a automatización con IA</a></footer>
+<script>const $=i=>document.getElementById(i);const WA="34745060067";
+const S=[["Cambio de aceite y filtros",70],["Revisión de frenos",90],["Cambio de neumáticos (4)",60],["Diagnosis electrónica",45],["Pre-ITV",35]];
+const V=[["Utilitario / compacto",1],["Berlina / familiar",1.15],["SUV / monovolumen",1.3],["Furgoneta",1.4]];
+const E=[["Recogida y entrega del vehículo",25],["Coche de cortesía",20],["Lavado interior y exterior",15]];
+S.forEach((s,i)=>$("sv").add(new Option(s[0]+" · desde "+s[1]+" €",i)));V.forEach((v,i)=>$("ve").add(new Option(v[0],i)));
+E.forEach((e,i)=>{const l=document.createElement("label"),c=document.createElement("input");c.type="checkbox";c.id="e"+i;c.style.width="auto";c.style.marginRight="8px";c.onchange=calc;l.append(c,e[0]+" (+"+e[1]+" €)");$("ex").appendChild(l)});
+const f=n=>n.toLocaleString("es-ES",{style:"currency",currency:"EUR"});let tot=0;
+function calc(){let b=S[$("sv").value][1]*V[$("ve").value][1];const ex=[];E.forEach((e,i)=>{if($("e"+i).checked){b+=e[1];ex.push(e[0])}});b=Math.round(b*100)/100;const iva=Math.round(b*21)/100;tot=Math.round((b+iva)*100)/100;
+$("bi").textContent=f(b);$("iv").textContent=f(iva);$("to").textContent=f(tot);
+const m="Hola, quiero cita en el taller. Servicio: "+S[$("sv").value][0]+". Vehículo: "+V[$("ve").value][0]+". Extras: "+(ex.join(", ")||"ninguno")+". Total estimado: "+f(tot)+" (IVA incl.).";$("wa").href="https://wa.me/"+WA+"?text="+encodeURIComponent(m)}
+$("sv").onchange=$("ve").onchange=calc;calc();</script></body></html>

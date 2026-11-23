@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Demo gestor de citas para clínicas</title><meta name="description" content="Demo ficticia: cita de fisioterapia o estética con recordatorio 24 h antes, ficha descargable y WhatsApp.">
+<style>
+:root{--h:218;--s:85;--bg:hsl(var(--h) calc(var(--s)*.5%) 6%);--surf:hsl(var(--h) calc(var(--s)*.5%) 11%);--line:hsl(var(--h) calc(var(--s)*.4%) 22%);--fg:hsl(var(--h) 30% 96%);--mut:hsl(var(--h) 14% 67%);--acc:hsl(calc(var(--h) + 42) calc(var(--s)*.75%) 70%);--on:hsl(var(--h) 30% 5%)}
+@media(prefers-color-scheme:light){:root{--bg:hsl(var(--h) 30% 97%);--surf:#fff;--line:hsl(var(--h) 20% 82%);--fg:hsl(var(--h) 40% 10%);--mut:hsl(var(--h) 12% 38%);--acc:hsl(calc(var(--h) + 42) 60% 32%);--on:#fff}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,sans-serif}
+main{max-width:640px;margin:0 auto;padding:20px 16px}h1{font-size:1.5rem;margin:0 0 4px}.mut{color:var(--mut)}
+.card{background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0}
+button,.btn{background:var(--acc);color:var(--on);border:0;border-radius:10px;padding:10px 16px;font:inherit;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block}
+button.g{background:transparent;color:var(--fg);border:1px solid var(--line)}button.on{outline:2px solid var(--acc)}
+input,select,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font:inherit}
+label{display:block;margin:10px 0 4px;font-size:.9rem}.row{display:flex;gap:8px;flex-wrap:wrap}.row>*{flex:1}
+.tag{font-size:.75rem;border:1px solid var(--line);border-radius:99px;padding:1px 8px;color:var(--mut);margin-right:4px}
+footer{text-align:center;color:var(--mut);font-size:.8rem;padding:20px 16px}footer a{color:inherit}a{color:var(--acc)}
+.ok{color:var(--acc);font-weight:600}pre{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px;font-size:.85rem}.sl button{padding:8px 12px}.msg{padding:8px 12px;border-radius:12px;margin:6px 0;max-width:90%}.me{background:var(--acc);color:var(--on);margin-left:auto}.bot{background:var(--surf);border:1px solid var(--line)}button:disabled{opacity:.35;cursor:not-allowed}</style></head><body><main><h1>Citas · Clínica Ejemplo</h1><p class="mut">Demo ficticia: elige tratamiento, profesional, día y hueco. El sistema avisaría 24 h antes por WhatsApp.</p>
+<div class="card"><label for="tr">Tratamiento</label><select id="tr"></select><label for="pr">Profesional</label><select id="pr"></select><label for="dia">Día</label><input type="date" id="dia"><label>Hueco</label><div class="row sl" id="hu"></div><label for="nom">Tu nombre</label><input id="nom" maxlength="40" placeholder="Nombre"></div>
+<div class="card" id="res" hidden><b>Ficha de la cita</b><pre id="fi"></pre><p class="ok" id="rec"></p><div class="row"><button id="dl">Descargar ficha (.txt)</button><a class="btn" id="wa" target="_blank" rel="noopener">Enviar por WhatsApp</a></div></div></main>
+<footer>Demo ficticia · <a href="/aviso-legal.html">Aviso legal</a> · <a href="/privacidad.html">Privacidad</a> · <a href="/cookies.html">Cookies</a><br><a href="/#automatizacion">&larr; Volver a automatización con IA</a></footer>
+<script>const $=i=>document.getElementById(i);const WA="34745060067";
+const T=[["Fisioterapia general (45 min)",40],["Masaje descontracturante (30 min)",35],["Limpieza facial (60 min)",45],["Drenaje linfático (50 min)",50]];
+const P=["Ana Ruiz (fisioterapeuta)","Marcos Gil (fisioterapeuta)","Lucía Vega (estética)"];
+const H=["09:00","10:00","11:30","13:00","16:00","17:30","19:00"];let sel=null;
+T.forEach((t,i)=>$("tr").add(new Option(t[0]+" · "+t[1]+" €",i)));P.forEach((p,i)=>$("pr").add(new Option(p,i)));
+function iso(d){return d.toISOString().slice(0,10)}
+const d0=new Date();d0.setDate(d0.getDate()+1);$("dia").min=iso(d0);$("dia").value=iso(d0);
+function busy(){const k=$("dia").value+$("pr").value;let h=0;for(const c of k)h=(h*31+c.charCodeAt(0))>>>0;return H.filter((_,i)=>(h>>i)%3===0)}
+function slots(){sel=null;$("res").hidden=true;$("hu").textContent="";const b=busy();H.forEach(h=>{const x=document.createElement("button");x.className="g";x.textContent=h;if(b.includes(h)){x.disabled=true;x.title="Ocupado"}else x.onclick=()=>{sel=h;[...$("hu").children].forEach(y=>y.classList.remove("on"));x.classList.add("on");ficha()};$("hu").appendChild(x)})}
+function rec(){const d=new Date($("dia").value+"T"+sel+":00");return new Date(d-864e5)}
+function texto(){const t=T[$("tr").value];
+return "CITA CONFIRMADA (demo)\nClínica Ejemplo\nPaciente: "+($("nom").value.trim()||"(sin nombre)")+"\nTratamiento: "+t[0]+"\nPrecio: "+t[1]+" €\nProfesional: "+P[$("pr").value]+"\nFecha: "+$("dia").value+" a las "+sel+"\nRecordatorio: "+rec().toLocaleString("es-ES",{dateStyle:"short",timeStyle:"short"})}
+function ficha(){$("res").hidden=false;$("fi").textContent=texto();$("rec").textContent="Aviso automático por WhatsApp el "+rec().toLocaleString("es-ES",{dateStyle:"long",timeStyle:"short"})+" (24 h antes).";$("wa").href="https://wa.me/"+WA+"?text="+encodeURIComponent(texto())}
+$("dl").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([texto()],{type:"text/plain"}));a.download="cita.txt";a.click()};
+["tr","pr","dia"].forEach(i=>$(i).onchange=slots);$("nom").oninput=()=>{if(sel)ficha()};slots();</script></body></html>

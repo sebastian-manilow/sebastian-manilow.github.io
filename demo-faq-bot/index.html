@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Demo asistente de preguntas frecuentes</title><meta name="description" content="Demo ficticia: asistente de FAQ configurable con derivación a WhatsApp.">
+<style>
+:root{--h:218;--s:85;--bg:hsl(var(--h) calc(var(--s)*.5%) 6%);--surf:hsl(var(--h) calc(var(--s)*.5%) 11%);--line:hsl(var(--h) calc(var(--s)*.4%) 22%);--fg:hsl(var(--h) 30% 96%);--mut:hsl(var(--h) 14% 67%);--acc:hsl(calc(var(--h) + 42) calc(var(--s)*.75%) 70%);--on:hsl(var(--h) 30% 5%)}
+@media(prefers-color-scheme:light){:root{--bg:hsl(var(--h) 30% 97%);--surf:#fff;--line:hsl(var(--h) 20% 82%);--fg:hsl(var(--h) 40% 10%);--mut:hsl(var(--h) 12% 38%);--acc:hsl(calc(var(--h) + 42) 60% 32%);--on:#fff}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,sans-serif}
+main{max-width:640px;margin:0 auto;padding:20px 16px}h1{font-size:1.5rem;margin:0 0 4px}.mut{color:var(--mut)}
+.card{background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0}
+button,.btn{background:var(--acc);color:var(--on);border:0;border-radius:10px;padding:10px 16px;font:inherit;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block}
+button.g{background:transparent;color:var(--fg);border:1px solid var(--line)}button.on{outline:2px solid var(--acc)}
+input,select,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font:inherit}
+label{display:block;margin:10px 0 4px;font-size:.9rem}.row{display:flex;gap:8px;flex-wrap:wrap}.row>*{flex:1}
+.tag{font-size:.75rem;border:1px solid var(--line);border-radius:99px;padding:1px 8px;color:var(--mut);margin-right:4px}
+footer{text-align:center;color:var(--mut);font-size:.8rem;padding:20px 16px}footer a{color:inherit}a{color:var(--acc)}
+.ok{color:var(--acc);font-weight:600}pre{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px;font-size:.85rem}.sl button{padding:8px 12px}.msg{padding:8px 12px;border-radius:12px;margin:6px 0;max-width:90%}.me{background:var(--acc);color:var(--on);margin-left:auto}.bot{background:var(--surf);border:1px solid var(--line)}button:disabled{opacity:.35;cursor:not-allowed}</style></head><body><main><h1>Asistente de preguntas frecuentes</h1><p class="mut">Demo ficticia y configurable: edita el JSON de abajo para adaptarlo a cualquier negocio. Responde por palabras clave y, si no sabe, te deriva a WhatsApp.</p>
+<div class="card" id="chat" aria-live="polite" style="min-height:120px"><div class="msg bot">Hola, soy el asistente de Negocio Ejemplo. Pregúntame por horarios, precios o ubicación.</div></div>
+<form id="fm" class="row"><input id="q" maxlength="120" placeholder="Escribe tu pregunta" aria-label="Pregunta" style="flex:3"><button>Preguntar</button></form>
+<div class="card"><b>Configuración (JSON editable)</b><textarea id="cfg" rows="12" spellcheck="false" aria-label="JSON de preguntas y respuestas"></textarea><button class="g" id="ap" style="margin-top:8px">Aplicar</button> <span id="er" class="mut"></span></div></main>
+<footer>Demo ficticia · <a href="/aviso-legal.html">Aviso legal</a> · <a href="/privacidad.html">Privacidad</a> · <a href="/cookies.html">Cookies</a><br><a href="/#automatizacion">&larr; Volver a automatización con IA</a></footer>
+<script>const $=i=>document.getElementById(i);const WA="34745060067";
+const D={negocio:"Negocio Ejemplo",faqs:[{palabras:["horario","abierto","abren","hora"],respuesta:"Abrimos de lunes a viernes de 9:00 a 20:00 y sábados de 10:00 a 14:00."},{palabras:["precio","cuesta","tarifa","cuanto"],respuesta:"Nuestros servicios van desde 20 €. Dinos cuál te interesa y te damos precio exacto."},{palabras:["donde","ubicacion","direccion","llegar"],respuesta:"Estamos en la Calle Ejemplo 1, a 2 minutos del centro. Hay aparcamiento cerca."},{palabras:["cita","reservar","reserva"],respuesta:"Puedes pedir cita por WhatsApp y te confirmamos en el día."},{palabras:["pago","tarjeta","bizum","efectivo"],respuesta:"Aceptamos tarjeta, Bizum y efectivo."}]};
+$("cfg").value=JSON.stringify(D,null,2);let C=D;
+const norm=s=>s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+function add(t,c){const d=document.createElement("div");d.className="msg "+c;d.textContent=t;$("chat").appendChild(d);return d}
+function resp(q){const n=norm(q);let best=null,sc=0;for(const f of C.faqs){const s=f.palabras.filter(p=>n.includes(norm(p))).length;if(s>sc){sc=s;best=f}}return best}
+$("fm").onsubmit=e=>{e.preventDefault();const q=$("q").value.trim();if(!q)return;add(q,"me");const f=resp(q);
+if(f)add(f.respuesta,"bot");else{const d=add("No estoy seguro de eso. Te paso con una persona por WhatsApp: ","bot");const a=document.createElement("a");a.target="_blank";a.rel="noopener";a.textContent="Abrir WhatsApp";a.href="https://wa.me/"+WA+"?text="+encodeURIComponent("Hola, tengo una duda: "+q);d.appendChild(a)}$("q").value=""};
+$("ap").onclick=()=>{try{const j=JSON.parse($("cfg").value);if(!Array.isArray(j.faqs)||j.faqs.some(f=>!Array.isArray(f.palabras)||typeof f.respuesta!="string"))throw 0;C=j;$("er").textContent="Aplicado.";$("chat").textContent="";add("Hola, soy el asistente de "+(j.negocio||"tu negocio")+". ¿En qué te ayudo?","bot")}catch(x){$("er").textContent="JSON no válido: cada elemento necesita palabras (lista) y respuesta (texto)."}};</script></body></html>
