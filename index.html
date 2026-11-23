@@ -300,6 +300,20 @@ body{background:radial-gradient(1200px 600px at 80% -10%,color-mix(in srgb,var(-
 #mn-up:hover{background:var(--surf2)}
 @media (prefers-reduced-motion:reduce){#mn-btn,#mn-panel,#mn-up{transition:none}}
 </style>
+<style id="luz">
+/* Efectos discretos: luz que sigue al ratón, bordes translúcidos y color que cambia muy despacio */
+:root{--mx:50vw;--my:30vh}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(520px circle at var(--mx) var(--my),color-mix(in srgb,var(--amber) 9%,transparent),transparent 60%)}
+.glow{animation:tinte 40s ease-in-out infinite alternate}
+@keyframes tinte{from{filter:hue-rotate(0deg)}to{filter:hue-rotate(28deg)}}
+.card,.faq details,.price,.tab{position:relative}
+.card{background:linear-gradient(160deg,color-mix(in srgb,var(--surf) 78%,transparent),color-mix(in srgb,var(--surf) 55%,transparent));border:1px solid color-mix(in srgb,var(--fg) 9%,transparent);-webkit-backdrop-filter:blur(10px) saturate(115%);backdrop-filter:blur(10px) saturate(115%);box-shadow:inset 0 1px 0 color-mix(in srgb,var(--fg) 7%,transparent)}
+.card::after{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;pointer-events:none;opacity:0;transition:opacity .35s;background:radial-gradient(260px circle at var(--cx,50%) var(--cy,50%),color-mix(in srgb,var(--amber) 55%,transparent),transparent 65%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.card:hover::after{opacity:1}
+.btn{box-shadow:0 0 0 1px color-mix(in srgb,var(--fg) 14%,transparent),0 6px 22px -10px color-mix(in srgb,var(--amber) 55%,transparent)}
+header.top{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+@media (hover:none),(prefers-reduced-motion:reduce){body::before{display:none}.glow{animation:none}.card::after{display:none}}
+</style>
 </head>
 <body>
 <div class="prog" id="prog"></div><div class="spot" aria-hidden="true"></div>
@@ -527,6 +541,13 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape")set(false)})
 function sc(){u.classList.toggle("show",window.scrollY>600)}
 window.addEventListener("scroll",sc,{passive:true});sc();
 u.addEventListener("click",function(){window.scrollTo({top:0,behavior:window.matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"})});
+})();
+</script>
+<script id="luz-js">
+(function(){if(matchMedia("(hover:none)").matches||matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+var r=document.documentElement,t=0,x=0,y=0;
+addEventListener("pointermove",function(e){x=e.clientX;y=e.clientY;if(t)return;t=requestAnimationFrame(function(){t=0;r.style.setProperty("--mx",x+"px");r.style.setProperty("--my",y+"px");
+var c=e.target.closest&&e.target.closest(".card");if(c){var b=c.getBoundingClientRect();c.style.setProperty("--cx",(x-b.left)+"px");c.style.setProperty("--cy",(y-b.top)+"px")}})},{passive:true});
 })();
 </script>
 </body>
