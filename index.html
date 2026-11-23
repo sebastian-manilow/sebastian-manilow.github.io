@@ -348,7 +348,16 @@ header.top{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 @media (max-width:900px){.deco{display:none}#neural{opacity:.08}}
 @media (prefers-reduced-motion:reduce){#neural{opacity:.07}}
 </style>
-<style id="sw-demos">.tab.hl{border-color:var(--amber);color:var(--fg);background:color-mix(in srgb,var(--amber) 10%,transparent)}</style><style id="pie-ej">.pie-ej{margin:0;color:var(--mut);font-size:.82rem;line-height:1.9}.pie-ej a{color:var(--mut);text-decoration:underline;text-underline-offset:3px}.pie-ej a:hover{color:var(--fg)}</style></head>
+<style id="sw-demos">.tab.hl{border-color:var(--amber);color:var(--fg);background:color-mix(in srgb,var(--amber) 10%,transparent)}</style><style id="pie-ej">.pie-ej{margin:0;color:var(--mut);font-size:.82rem;line-height:1.9}.pie-ej a{color:var(--mut);text-decoration:underline;text-underline-offset:3px}.pie-ej a:hover{color:var(--fg)}</style><style id="fondo-pares">
+/* Red tecnológica compartida por parejas de secciones contiguas + cristal reforzado. Solo decorativo. */
+#neural{position:absolute;height:100vh}
+main section{position:relative}
+canvas.pair{position:absolute;left:calc(50% - 50vw);width:100vw;top:0;z-index:-1;pointer-events:none;opacity:.22;-webkit-mask-image:linear-gradient(180deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(180deg,transparent,#000 10%,#000 90%,transparent)}
+.card,.plan,.calc,.stat,.quiz,.steps,details,.price{background:linear-gradient(160deg,color-mix(in srgb,var(--surf) 46%,transparent),color-mix(in srgb,var(--surf) 24%,transparent));-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);border:1px solid color-mix(in srgb,var(--fg) 15%,transparent);box-shadow:inset 0 1px 0 color-mix(in srgb,var(--fg) 18%,transparent),inset 0 0 0 1px color-mix(in srgb,var(--amber) 4%,transparent),0 18px 40px -22px #000c}
+.plan.pop{background:linear-gradient(160deg,color-mix(in srgb,var(--amber) 9%,transparent),color-mix(in srgb,var(--surf) 24%,transparent))}
+@media (max-width:900px){canvas.pair{opacity:.18}}
+</style>
+</head>
 <body>
 <div class="prog" id="prog"></div><div class="spot" aria-hidden="true"></div>
 <a class="wa" aria-label="Escribeme por WhatsApp" href="https://wa.me/34745060067?text=Hola%2C%20quiero%20una%20auditor%C3%ADa%20gratis%20de%20mi%20web" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1.1.1-1.8-.1a14 14 0 0 1-5.3-3.3 6 6 0 0 1-1.4-2.7c-.1-.8.4-1.6 1-1.8.3-.1.6 0 .8.4l.7 1.5c.1.3.1.5-.1.7l-.4.5c.4.8 1 1.5 1.8 1.9.5.3.9.5 1.2.4l.6-.7c.2-.2.4-.2.7-.1l1.6.8c.3.1.4.4.3.8z"/></svg></a>
@@ -612,6 +621,34 @@ function go(){cancelAnimationFrame(raf);if(!mq.matches&&!document.hidden)raf=req
 var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(function(){size();go()},200)});
 document.addEventListener("visibilitychange",go);if(mq.addEventListener)mq.addEventListener("change",go);
 size();go();
+})();
+</script>
+<script id="fondo-pares-js">
+(function(){
+var secs=document.querySelectorAll("main section");if(secs.length<9)return;
+var mq=matchMedia("(prefers-reduced-motion:reduce)"),sm=matchMedia("(max-width:900px)"),pr=document.createElement("i");
+pr.style.cssText="position:absolute;visibility:hidden;color:var(--amber)";document.body.appendChild(pr);
+function Net(a,b){
+  var c=document.createElement("canvas");c.className="pair";c.setAttribute("aria-hidden","true");a.insertBefore(c,a.firstChild);
+  var x=c.getContext("2d"),W=0,H=0,N=[],P=[],raf=0,vis=false,col="#bcd0ff",fr=0;
+  function size(){var d=Math.min(devicePixelRatio||1,1.5),r1=a.getBoundingClientRect(),r2=b.getBoundingClientRect();
+    W=Math.max(1,innerWidth);H=Math.max(1,Math.round(r2.bottom-r1.top));c.style.height=H+"px";c.width=W*d;c.height=H*d;x.setTransform(d,0,0,d,0,0);
+    var n=Math.round(Math.min(sm.matches?26:100,W*H/(sm.matches?22000:19000)));N=[];for(var i=0;i<n;i++)N.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.14,vy:(Math.random()-.5)*.14,r:Math.random()<.12?2.6:1.5});P=[];draw(0)}
+  function draw(m){if(!(fr++%30))col=getComputedStyle(pr).color;var L=sm.matches?115:150,i,j;x.clearRect(0,0,W,H);x.lineWidth=.7;x.strokeStyle=col;x.fillStyle=col;
+    for(i=0;i<N.length;i++){var A=N[i];if(m){A.x+=A.vx;A.y+=A.vy;if(A.x<0||A.x>W)A.vx*=-1;if(A.y<0||A.y>H)A.vy*=-1}
+      for(j=i+1;j<N.length;j++){var B=N[j],dx=A.x-B.x,dy=A.y-B.y,d2=dx*dx+dy*dy;if(d2<L*L){x.globalAlpha=(1-Math.sqrt(d2)/L)*.75;x.beginPath();x.moveTo(A.x,A.y);x.lineTo(B.x,B.y);x.stroke();
+        if(m&&P.length<(sm.matches?4:12)&&Math.random()<.0009)P.push({a:A,b:B,t:0})}}
+      x.globalAlpha=.9;x.beginPath();x.arc(A.x,A.y,A.r,0,6.283);x.fill()}
+    for(i=P.length-1;i>=0;i--){var q=P[i];q.t+=.012;if(q.t>=1){P.splice(i,1);continue}x.globalAlpha=1-q.t*.6;x.beginPath();x.arc(q.a.x+(q.b.x-q.a.x)*q.t,q.a.y+(q.b.y-q.a.y)*q.t,2.4,0,6.283);x.fill()}}
+  function loop(){draw(1);raf=requestAnimationFrame(loop)}
+  function go(){cancelAnimationFrame(raf);if(vis&&!mq.matches&&!document.hidden)raf=requestAnimationFrame(loop)}
+  new IntersectionObserver(function(es){vis=es[0].isIntersecting;go()},{rootMargin:"120px"}).observe(c);
+  document.addEventListener("visibilitychange",go);if(mq.addEventListener)mq.addEventListener("change",go);
+  var t;function re(){clearTimeout(t);t=setTimeout(function(){size();go()},200)}
+  addEventListener("resize",re);if(window.ResizeObserver){var ro=new ResizeObserver(re);ro.observe(a);ro.observe(b)}
+  size();setTimeout(size,600);
+}
+[[1,2],[4,5],[7,8]].forEach(function(p){Net(secs[p[0]],secs[p[1]])});
 })();
 </script>
 </body>
