@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Demo reservas de restaurante con aviso por WhatsApp</title><meta name="description" content="Formulario de reserva ficticio con disponibilidad simulada y mensaje de WhatsApp.">
+<style>
+:root{--h:218;--s:85;--bg:hsl(var(--h) calc(var(--s)*.5%) 6%);--surf:hsl(var(--h) calc(var(--s)*.5%) 11%);--line:hsl(var(--h) calc(var(--s)*.4%) 22%);--fg:hsl(var(--h) 30% 96%);--mut:hsl(var(--h) 14% 67%);--acc:hsl(calc(var(--h) + 42) calc(var(--s)*.75%) 70%);--on:hsl(var(--h) 30% 5%)}
+@media(prefers-color-scheme:light){:root{--bg:hsl(var(--h) 30% 97%);--surf:#fff;--line:hsl(var(--h) 20% 82%);--fg:hsl(var(--h) 40% 10%);--mut:hsl(var(--h) 12% 38%);--acc:hsl(calc(var(--h) + 42) 60% 32%);--on:#fff}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,sans-serif}
+main{max-width:640px;margin:0 auto;padding:20px 16px}h1{font-size:1.5rem;margin:0 0 4px}.mut{color:var(--mut)}
+.card{background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0}
+button,.btn{background:var(--acc);color:var(--on);border:0;border-radius:10px;padding:10px 16px;font:inherit;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block}
+button.g{background:transparent;color:var(--fg);border:1px solid var(--line)}button.on{outline:2px solid var(--acc)}
+input,select,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font:inherit}
+label{display:block;margin:10px 0 4px;font-size:.9rem}.row{display:flex;gap:8px;flex-wrap:wrap}.row>*{flex:1}
+.tag{font-size:.75rem;border:1px solid var(--line);border-radius:99px;padding:1px 8px;color:var(--mut);margin-right:4px}
+footer{text-align:center;color:var(--mut);font-size:.8rem;padding:20px 16px}footer a{color:inherit}a{color:var(--acc)}
+</style></head><body><main><h1>Reserva de mesa · Restaurante Ejemplo</h1><p class="mut">Demo ficticia: el cliente reserva y recibe confirmación; tú recibes el aviso por WhatsApp.</p>
+<form id="f" class="card"><label>Nombre</label><input id="n" required maxlength="40" placeholder="Nombre ficticio">
+<div class="row"><div><label>Personas</label><select id="p"></select></div><div><label>Fecha</label><input type="date" id="d" required></div><div><label>Hora</label><select id="h"></select></div></div>
+<label>Comentarios (alergias, trona...)</label><input id="c" maxlength="120"><p><button>Comprobar disponibilidad</button></p></form><div id="r"></div></main>
+<footer>Demo ficticia · <a href="/aviso-legal.html">Aviso legal</a> · <a href="/privacidad.html">Privacidad</a> · <a href="/cookies.html">Cookies</a><br><a href="/#automatizacion">&larr; Volver a automatización con IA</a></footer>
+<script>const $=i=>document.getElementById(i);
+for(let i=1;i<=10;i++)$("p").add(new Option(i+(i>1?" personas":" persona"),i));
+["13:30","14:00","14:30","15:00","20:30","21:00","21:30","22:00"].forEach(h=>$("h").add(new Option(h,h)));
+const t=new Date();t.setDate(t.getDate()+1);const iso=x=>x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0");$("d").min=$("d").value=iso(t);
+function lleno(d,h,p){let s=0;(d+h).split("").forEach(c=>s+=c.charCodeAt(0));return (s+Number(p))%4==0}
+$("f").onsubmit=e=>{e.preventDefault();const d=$("d").value,h=$("h").value,p=$("p").value,n=$("n").value.trim(),c=$("c").value.trim(),R=$("r");R.innerHTML="";
+const box=document.createElement("div");box.className="card";
+if(new Date(d+"T12:00:00").getDay()===1){box.textContent="Los lunes cerramos. Elige otro día.";R.appendChild(box);return}
+if(lleno(d,h,p)){box.textContent="A las "+h+" no queda mesa para "+p+". Prueba con otra hora (simulado).";R.appendChild(box);return}
+const f=d.split("-").reverse().join("/");const m="Hola, soy "+n+". Quiero reservar mesa para "+p+" el "+f+" a las "+h+"."+(c?" Comentarios: "+c+".":"");
+const b=document.createElement("b");b.textContent="Mesa disponible";const q=document.createElement("p");q.textContent="Reserva a nombre de "+n+": "+p+" personas, "+f+" a las "+h+". Recibirías un recordatorio el día antes.";
+const a=document.createElement("a");a.className="btn";a.target="_blank";a.rel="noopener";a.textContent="Confirmar por WhatsApp";a.href="https://wa.me/34745060067?text="+encodeURIComponent(m);
+box.append(b,q,a);R.appendChild(box)}</script></body></html>

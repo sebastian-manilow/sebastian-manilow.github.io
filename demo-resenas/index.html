@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Demo gestión de reseñas para negocios</title><meta name="description" content="Flujo ficticio: valoraciones altas piden reseña en Google, bajas recogen comentario privado.">
+<style>
+:root{--h:218;--s:85;--bg:hsl(var(--h) calc(var(--s)*.5%) 6%);--surf:hsl(var(--h) calc(var(--s)*.5%) 11%);--line:hsl(var(--h) calc(var(--s)*.4%) 22%);--fg:hsl(var(--h) 30% 96%);--mut:hsl(var(--h) 14% 67%);--acc:hsl(calc(var(--h) + 42) calc(var(--s)*.75%) 70%);--on:hsl(var(--h) 30% 5%)}
+@media(prefers-color-scheme:light){:root{--bg:hsl(var(--h) 30% 97%);--surf:#fff;--line:hsl(var(--h) 20% 82%);--fg:hsl(var(--h) 40% 10%);--mut:hsl(var(--h) 12% 38%);--acc:hsl(calc(var(--h) + 42) 60% 32%);--on:#fff}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,sans-serif}
+main{max-width:640px;margin:0 auto;padding:20px 16px}h1{font-size:1.5rem;margin:0 0 4px}.mut{color:var(--mut)}
+.card{background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0}
+button,.btn{background:var(--acc);color:var(--on);border:0;border-radius:10px;padding:10px 16px;font:inherit;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block}
+button.g{background:transparent;color:var(--fg);border:1px solid var(--line)}button.on{outline:2px solid var(--acc)}
+input,select,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font:inherit}
+label{display:block;margin:10px 0 4px;font-size:.9rem}.row{display:flex;gap:8px;flex-wrap:wrap}.row>*{flex:1}
+.tag{font-size:.75rem;border:1px solid var(--line);border-radius:99px;padding:1px 8px;color:var(--mut);margin-right:4px}
+footer{text-align:center;color:var(--mut);font-size:.8rem;padding:20px 16px}footer a{color:inherit}a{color:var(--acc)}
+</style></head><body><main><h1>Reseñas · Clínica Ejemplo</h1><p class="mut">Demo ficticia: tras la visita, el asistente pregunta la valoración. Si es buena, pide reseña en Google; si no, recoge el comentario en privado.</p>
+<div class="card"><b>¿Cómo valoras tu visita?</b><div class="row" id="st" style="margin-top:8px"></div></div><div id="r"></div></main>
+<footer>Demo ficticia · <a href="/aviso-legal.html">Aviso legal</a> · <a href="/privacidad.html">Privacidad</a> · <a href="/cookies.html">Cookies</a><br><a href="/#automatizacion">&larr; Volver a automatización con IA</a></footer>
+<script>const $=i=>document.getElementById(i);
+for(let i=1;i<=5;i++){const b=document.createElement("button");b.className="g";b.textContent=i+" ★";b.setAttribute("aria-label",i+" estrellas");b.onclick=()=>pick(i,b);$("st").appendChild(b)}
+function pick(n,b){[...$("st").children].forEach(x=>x.classList.remove("on"));b.classList.add("on");const R=$("r");R.innerHTML="";const c=document.createElement("div");c.className="card";
+if(n>=4){const p=document.createElement("p");p.textContent="¡Gracias! Nos alegra mucho. ¿Nos dejas una reseña en Google? Solo te llevará un minuto.";const a=document.createElement("a");a.className="btn";a.href="#";a.textContent="Dejar reseña en Google (enlace de ejemplo)";a.onclick=e=>{e.preventDefault();alert("Demo: aquí iría el enlace de reseña de la ficha de Google de tu negocio.")};c.append(p,a)}
+else{const p=document.createElement("p");p.textContent="Lamentamos que no haya sido perfecto. Cuéntanos qué pasó y te contestamos en privado (no se publica).";const t=document.createElement("textarea");t.rows=3;t.maxLength=300;t.id="t";const bt=document.createElement("button");bt.textContent="Enviar comentario privado";bt.style.marginTop="8px";const o=document.createElement("p");o.id="o";bt.onclick=()=>{o.textContent="Recibido. El responsable recibe un aviso en su móvil para llamarte y resolverlo (simulado, no se guarda nada).";t.value=""};c.append(p,t,bt,o)}
+R.appendChild(c)}</script></body></html>
