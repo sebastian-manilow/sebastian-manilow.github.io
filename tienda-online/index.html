@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tienda online sencilla para pequeño comercio | Sebastián Manilow</title>
+<meta name="description" content="Tienda online sencilla para comercios de la Sierra Norte y Madrid: desde 400 €, o catálogo con pedido por WhatsApp desde 250 €. Prueba la demo.">
+<link rel="canonical" href="https://sebastian-manilow.github.io/tienda-online/">
+<style>
+:root{--h:218;--s:85;--sa:calc(var(--s)*1%);--bg:hsl(var(--h) 30% 98%);--card:#fff;--fg:hsl(var(--h) 30% 12%);--mut:hsl(var(--h) 12% 40%);--line:hsl(var(--h) 25% 86%);--acc:hsl(var(--h) var(--sa) 40%);--on:#fff}
+@media(prefers-color-scheme:dark){:root{--bg:hsl(var(--h) 25% 9%);--card:hsl(var(--h) 22% 14%);--fg:hsl(var(--h) 20% 92%);--mut:hsl(var(--h) 12% 68%);--line:hsl(var(--h) 18% 24%);--acc:hsl(var(--h) var(--sa) 62%);--on:#0b1220}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,sans-serif}
+main{max-width:860px;margin:auto;padding:20px 16px}h1{font-size:1.8rem;line-height:1.2}h2{margin-top:2rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.g{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.p{font-size:1.4rem;font-weight:700;color:var(--acc)}.m{color:var(--mut)}
+.btn{display:inline-block;background:var(--acc);color:var(--on);border:1px solid var(--acc);border-radius:10px;padding:10px 16px;font:inherit;font-weight:600;text-decoration:none;cursor:pointer}
+.btn.o{background:transparent;color:var(--acc)}.btn.o.on{background:var(--acc);color:var(--on)}
+a{color:var(--acc)}li{margin:.2rem 0}
+.demo{border:2px dashed var(--line);border-radius:14px;padding:14px}
+.it{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--line)}
+.cats .btn{margin:0 6px 8px 0}
+input,textarea{width:100%;padding:9px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font:inherit;margin:4px 0}
+footer{text-align:center;padding:24px 16px 70px;color:var(--mut);font-size:.9rem}
+.wa{position:fixed;right:14px;bottom:14px;background:#128c4a;color:#fff;border-radius:30px;padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 2px 8px #0004}
+</style></head><body><main>
+<h1>Tienda online sencilla para tu comercio</h1>
+<p class="m">Para comercios de la Sierra Norte y Madrid que quieren vender por internet sin complicarse. Trabajo yo directamente, sin intermediarios.</p>
+
+<h2>Opciones y precios «desde»</h2>
+<div class="g">
+<div class="card"><b>Catálogo + pedido por WhatsApp</b><div class="p">desde 250 €</div><p>Tus productos con fotos y precios; el cliente arma el pedido y te llega por WhatsApp. Sin pasarela de pago: cobras como ya haces (Bizum, efectivo, transferencia).</p></div>
+<div class="card"><b>Tienda sencilla</b><div class="p">desde 400 €</div><p>Carrito y pago online (tarjeta, Bizum o PayPal según proveedor), envíos, impuestos, textos legales y copia de seguridad. Hasta ~30 productos.</p></div>
+<div class="card"><b>Tienda completa</b><div class="p">hasta ~900 €</div><p>Más productos, variantes (tallas/colores), varias zonas de envío, cupones y carga masiva desde Excel.</p></div>
+</div>
+<p class="m">El precio final se cierra tras una llamada corta, por escrito y sin sorpresas. Los costes de terceros (dominio, hosting, comisiones de pago) no están incluidos. Mantenimiento opcional aparte.</p>
+
+<h2>Qué incluye</h2>
+<ul><li>Alta de productos y categorías, con fotos optimizadas</li><li>Pagos con Stripe, Redsys (tu banco) o PayPal, según te convenga</li><li>Envíos: tarifas por zona y recogida en tienda</li><li>IVA configurado y confirmaciones de pedido por correo</li><li>Aviso legal, privacidad, cookies y condiciones de venta (plantillas adaptadas, que debes revisar)</li><li>Copia de seguridad y formación breve para gestionar pedidos</li></ul>
+<h2>Qué no incluye</h2>
+<ul><li>Asesoría fiscal o legal (consulta a tu gestor)</li><li>Fotografía de producto, redacción masiva de fichas ni publicidad</li><li>Garantía de ventas ni de posicionamiento en Google</li></ul>
+
+<h2>Prueba la demo</h2>
+<div class="demo" id="demo">
+<p class="m" style="margin-top:0"><b>Demo ficticia</b>: tienda de ejemplo, funciona sin conexión y no guarda ni envía datos hasta que pulses el botón de WhatsApp.</p>
+<div class="cats" id="cats"></div><div id="list"></div>
+<h3>Tu carrito</h3><div id="cart" class="m" style="white-space:pre-line">Vacío</div>
+<label>Tu nombre<input id="nm" autocomplete="off"></label>
+<label>Notas (recogida o envío)<textarea id="nt" rows="2"></textarea></label>
+<p><a class="btn" id="send" href="#">Enviar pedido por WhatsApp</a></p>
+<p class="m" style="font-size:.85rem">Se abre WhatsApp con el pedido ya escrito (en la demo, hacia mi número comercial).</p>
+</div>
+
+<h2>Proceso y plazos</h2>
+<p>1) Llamada y presupuesto cerrado. 2) Me pasas productos, fotos y datos del negocio. 3) Monto y te enseño una versión de prueba. 4) Ajustes y lanzamiento. Plazo orientativo: 1-2 semanas el catálogo y 2-4 la tienda, desde que tengo el material.</p>
+
+<h2>Lo que debes tener tú como comercio</h2>
+<ul><li>Alta en Hacienda y Seguridad Social (autónomo o sociedad) y epígrafe IAE adecuado</li><li>Factura o ticket por cada venta e IVA/IRPF declarados con tu gestor</li><li>Datos identificativos visibles (nombre o razón social, NIF, domicilio, contacto)</li><li>Condiciones de venta claras: precios con IVA, gastos de envío, plazo de entrega y derecho de desistimiento de 14 días en ventas a consumidores</li><li>RGPD y LSSI: política de privacidad y cookies (la tienda se configura para minimizar cookies)</li></ul>
+
+<p style="margin-top:1.5rem"><a class="btn" href="https://wa.me/34745060067?text=Hola%2C%20me%20interesa%20una%20tienda%20online%20para%20mi%20comercio">Pedir presupuesto por WhatsApp</a></p>
+</main>
+<footer>© Sebastián Manilow · Navalafuente, Madrid · <a href="/aviso-legal.html">Aviso legal</a> · <a href="/privacidad.html">Privacidad</a> · <a href="/cookies.html">Cookies</a></footer>
+<a class="wa" href="https://wa.me/34745060067?text=Hola%2C%20me%20interesa%20una%20tienda%20online">WhatsApp</a>
+<script>
+const P=[["Quesos","Queso curado de oveja",9.5],["Quesos","Queso semicurado",7.8],["Miel","Miel de montaña 500 g",6.9],["Miel","Miel de romero 250 g",4.5],["Conservas","Mermelada de higo",3.9],["Conservas","Chorizo artesano",8.2]];
+let cat="Todos",cart={};const $=i=>document.getElementById(i);
+function draw(){const cs=["Todos",...new Set(P.map(p=>p[0]))];$("cats").innerHTML="";cs.forEach(c=>{const b=document.createElement("button");b.className="btn o"+(c==cat?" on":"");b.textContent=c;b.onclick=()=>{cat=c;draw()};$("cats").appendChild(b)});
+$("list").innerHTML="";P.forEach((p,i)=>{if(cat!="Todos"&&p[0]!=cat)return;const d=document.createElement("div");d.className="it";const s=document.createElement("span");s.textContent=p[1]+" · "+p[2].toFixed(2)+" €";d.appendChild(s);const b=document.createElement("button");b.className="btn";b.textContent="Añadir";b.onclick=()=>{cart[i]=(cart[i]||0)+1;show()};d.appendChild(b);$("list").appendChild(d)});show()}
+function show(){let t=0,l=[];for(const i in cart){const s=cart[i]*P[i][2];t+=s;l.push(cart[i]+" x "+P[i][1]+" = "+s.toFixed(2)+" €")}
+$("cart").textContent=l.length?l.join("\n")+"\nTotal: "+t.toFixed(2)+" € (IVA incl.)":"Vacío";
+const m="Hola, pedido (demo) de "+($("nm").value||"cliente")+":\n"+l.join("\n")+"\nTotal: "+t.toFixed(2)+" €\n"+$("nt").value;$("send").href="https://wa.me/34745060067?text="+encodeURIComponent(m)}
+$("nm").oninput=show;$("nt").oninput=show;draw();
+</script></body></html>
