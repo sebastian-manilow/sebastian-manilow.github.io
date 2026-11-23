@@ -57,7 +57,7 @@ footer{border-top:1px solid var(--line);padding:20px 0;color:var(--mut);font-siz
 </div>
 <p><button class="btn" type="button" id="gen">Generar JSON</button> <button class="btn o" type="button" id="cop">Copiar</button> <button class="btn o" type="button" id="des">Descargar</button></p>
 <pre id="out">{}</pre>
-<p class="note">Puedes enviarme este JSON por WhatsApp y lo reviso con el cuestionario completo de 25 preguntas. No incluyas datos personales de clientes.</p>
+<p class="note">Es el mismo formato de la demo: pégalo en su cuadro de configuración para probarlo. Puedes enviarme este JSON por WhatsApp y lo reviso con el cuestionario completo de 25 preguntas. No incluyas datos personales de clientes.</p>
 
 <p><a class="btn" href="https://wa.me/34745060067?text=Hola%2C%20quiero%20un%20asistente%20de%20preguntas%20frecuentes">Hablamos por WhatsApp</a></p>
 <footer>© Sebastián Manilow · Madrid · <a href="/aviso-legal.html">Aviso legal</a> · <a href="/privacidad.html">Privacidad</a> · <a href="/cookies.html">Cookies</a></footer>
@@ -72,9 +72,9 @@ function build(){const f=[];
   ['pago','pago, pagar, tarjeta, bizum, efectivo',$('pag').value,'¿Cómo puedo pagar?'],
   ['precios','precio, cuesta, tarifa, cuánto',$('pre').value,'¿Qué precios tenéis?'],
   ['cancelacion','cancelar, cambiar, anular',$('can').value,'¿Puedo cancelar o cambiar?']
- ].forEach(a=>{if(a[2].trim())f.push({id:a[0],pregunta:a[3],palabras_clave:a[1].split(',').map(s=>s.trim()),respuesta:a[2].trim()})});
- L.querySelectorAll('.card').forEach((c,i)=>{const p=c.querySelector('.p').value.trim(),r=c.querySelector('.r').value.trim();if(p&&r)f.push({id:'extra'+(i+1),pregunta:p,palabras_clave:c.querySelector('.k').value.split(',').map(s=>s.trim()).filter(Boolean),respuesta:r})});
- return JSON.stringify({negocio:$('nom').value.trim(),whatsapp:$('tel').value.replace(/\D/g,''),aviso:'Soy un asistente automático, no una persona. Para hablar con alguien, escríbenos por WhatsApp.',sin_respuesta:'No tengo esa información; te paso con una persona por WhatsApp.',faq:f},null,2)}
+ ].forEach(a=>{if(a[2].trim())f.push({palabras:a[1].split(',').map(s=>s.trim()),respuesta:a[2].trim()})});
+ L.querySelectorAll('.card').forEach((c,i)=>{const p=c.querySelector('.p').value.trim(),r=c.querySelector('.r').value.trim();if(p&&r)f.push({palabras:c.querySelector('.k').value.split(',').map(s=>s.trim()).filter(Boolean).concat(p?[p]:[]),respuesta:r})});
+ return JSON.stringify({negocio:$('nom').value.trim(),faqs:f},null,2)}
 $('gen').onclick=()=>{$('out').textContent=build()};
 $('cop').onclick=()=>{const t=build();$('out').textContent=t;if(navigator.clipboard)navigator.clipboard.writeText(t).catch(()=>{})};
 $('des').onclick=()=>{const t=build();$('out').textContent=t;const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'application/json'}));a.download='faq-negocio.json';a.click()};
